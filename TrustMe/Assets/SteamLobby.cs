@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
+using Steamworks;
+using UnityEngine.UI;
 
 public class SteamLobby : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //Callbacks
+    protected Callback<LobbyCreated_t> LobbyCreated;
+    protected Callback<GameLobbyJoinRequested_t> JoinRequest;
+    protected Callback<LobbyEnter_t> LobbyEntered;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //Variables
+    public ulong CurrentLobbyID;
+    private const string HostAddressKey = "HostAddress";
+
+    //Refrence to CostumeNetworkManager Script
+    private CostumeNetworkManager manager;
+
+    //Gameobjects
+    public GameObject HostButton;
+    public Text LobbyNameText;
 }

@@ -22,4 +22,21 @@ public class SteamLobby : MonoBehaviour
     //Gameobjects
     public GameObject HostButton;
     public Text LobbyNameText;
+
+    //function
+    private void OnLobbyCreated(LobbyCreated_t callback)
+    {
+        //if sth went wrong
+        if(callback.m_eResult != EResult.k_EResultOK)
+        {
+            return;
+        }
+        Debug.Log("Lobby created Successfully");
+
+        //Manager to start a game as host
+        manager.StartHost();
+        SteamMatchmaking.SetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey, SteamUser.GetSteamID().ToString());
+        SteamMatchmaking.SetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), "name", SteamFriends.GetPersonaName() + "'s Lobby");
+    }
+
 }

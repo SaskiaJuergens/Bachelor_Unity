@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,13 +19,32 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        if (events == null)
+        {
+            Debug.LogError("GameEvents not assigned in the GameManager.");
+            return;
+        }
+
         LoadQuestions();
+
+        if (_questions == null || _questions.Length == 0)
+        {
+            Debug.LogError("No questions loaded. Please check the Resources/Questions folder.");
+            return;
+        }
 
         foreach (var question in Questions)
         {
-            Debug.Log(question.Info);
+            if (question != null)
+            {
+                Debug.Log(question.Info);
+            }
+            else
+            {
+                Debug.LogError("Null question found in the Questions array.");
+            }
         }
-        //Display();
+        Display();
     }
 
     public void EraseAnswers()
@@ -35,13 +57,19 @@ public class GameManager : MonoBehaviour
         EraseAnswers();
         var question = GetRandomQuestion();
 
-        if (events.UpdateQuestionUI != null)
+        if (question == null)
+        {
+            Debug.LogError("No question available to display.");
+            return;
+        }
+
+        if (events != null && events.UpdateQuestionUI != null)
         {
             events.UpdateQuestionUI(question);
         }
         else
         {
-            Debug.LogWarning("Ups! Somnething went wrong while trying to display new Question UI Data. GameEvents.UpdateQuestionUI is null. Issues occured in GameManager.Display() method");
+            Debug.LogWarning("Something went wrong while trying to display new Question UI Data. GameEvents.UpdateQuestionUI is null. Issues occurred in GameManager.Display() method");
         }
 
     }
@@ -64,7 +92,6 @@ public class GameManager : MonoBehaviour
                 random = UnityEngine.Random.Range(0, Questions.Length);
             } while (finishedQuestions.Contains(random) || random == currentQuestion);
         }
-
         return random;
     }
 

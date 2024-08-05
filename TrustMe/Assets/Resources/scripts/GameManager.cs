@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        //random qustion wird ausgesucht
+        //var seed = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
+        //UnityEngine.Random.InitState(seed);
+
         if (events == null)
         {
             Debug.LogError("GameEvents not assigned in the GameManager.");

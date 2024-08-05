@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: Trust or Betray
   m_EditorClassIdentifier: 
   _info: Vertrauen oder Verrat
-  _answers: []
+  _answers:
+  - _info: Verrat
+    _isCorrect: 1
+  - _info: Kooperation
+    _isCorrect: 1
   _userTimer: 1
   _timer: 30
-  _answerType: 1
+  _answerType: 0
   _addScore: 10

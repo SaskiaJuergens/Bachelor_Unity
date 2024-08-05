@@ -9,8 +9,10 @@ using UnityEngine.UI;
 public struct UIManagerParameters
 {
     [Header("Answers Options")]
-    [SerializeField] float margins;
-    public float Margins { get { return margins; } }
+    [SerializeField] float topMargin; // Abstand vom oberen Rand des Containers zur ersten Antwort
+    [SerializeField] float answerSpacing; // Abstand zwischen Antworten
+    public float TopMargin { get { return topMargin; } }
+    public float AnswerSpacing { get { return answerSpacing; } }
 
     [Header("Resolution Screen Options")]
     [SerializeField] Color correctBGColor;
@@ -100,24 +102,48 @@ public class UIManager : MonoBehaviour
         CreateAnswers(question);
     }
 
-    void CreateAnswers (Question question)
+    void CreateAnswers(Question question)
     {
         EraseAnswers();
 
-        float offset = 0 - parameters.Margins;
-        for (int i= 0; i < question.Answers.Length; i++)
+        // Initial offset to start placing answers from the top
+        float offset = -parameters.TopMargin;
+
+        // Clear existing answers list
+        currentAnswers.Clear();
+
+        // Initialize height of the AnswerContentArea
+        float contentHeight = 0;
+
+        for (int i = 0; i < question.Answers.Length; i++)
         {
-            AnswerData newAnswer = (AnswerData)Instantiate(answerPrefab, uIElements.AnswerContentArea);
+            // Instantiate a new answer prefab
+            AnswerData newAnswer = Instantiate(answerPrefab, uIElements.AnswerContentArea);
+
+            // Update the data of the new answer
             newAnswer.UpdateData(question.Answers[i].Info, i);
 
+            // Set the position of the new answer
             newAnswer.Rect.anchoredPosition = new Vector2(0, offset);
 
-            offset -= (newAnswer.Rect.sizeDelta.y + parameters.Margins);
-            uIElements.AnswerContentArea.sizeDelta = new Vector2(uIElements.AnswerContentArea.sizeDelta.x, offset * -1);
+            // Update offset for the next answer
+            offset -= (newAnswer.Rect.rect.height + parameters.AnswerSpacing);
 
+            // Increment the contentHeight for the current answer
+            contentHeight += (newAnswer.Rect.rect.height + parameters.AnswerSpacing);
+
+            // Add the new answer to the list of current answers
             currentAnswers.Add(newAnswer);
         }
+
+        // Ensure the contentHeight does not exceed maxContentHeight
+        contentHeight = Mathf.Min(contentHeight, 5);
+
+        // Adjust the content area size to fit all answers but not exceed maxContentHeight
+        uIElements.AnswerContentArea.sizeDelta = new Vector2(uIElements.AnswerContentArea.sizeDelta.x, contentHeight);
     }
+
+
 
     void EraseAnswers()
     {

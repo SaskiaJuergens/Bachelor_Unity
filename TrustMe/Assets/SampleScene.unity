@@ -513,10 +513,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 207560184}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -374.2}
-  m_SizeDelta: {x: 1816.33, y: 1130}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -8.200012}
+  m_SizeDelta: {x: 704.32996, y: 398}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &170816283
 MonoBehaviour:
@@ -623,14 +623,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1357073444}
+  m_Children: []
   m_Father: {fileID: 660333032}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.98999023, y: 0.30004883}
-  m_SizeDelta: {x: 1.539917, y: 0.6000061}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &266156708
 MonoBehaviour:
@@ -2797,41 +2796,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1292674122}
   m_CullTransparentMesh: 1
---- !u!1 &1357073443
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1357073444}
-  m_Layer: 5
-  m_Name: Answer1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1357073444
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1357073443}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 266156707}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 88, y: 0}
-  m_SizeDelta: {x: -76, y: -144}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1404371479
 GameObject:
   m_ObjectHideFlags: 0
@@ -3169,7 +3133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   events: {fileID: 11400000, guid: 0d5036b2fc509864ba0b0826844ac7da, type: 2}
-  answerPrefab: {fileID: 2424637410014038970, guid: 4ebc4337bdd6d824a83a43965fb3fbac, type: 3}
+  answerPrefab: {fileID: 8679244759639012836, guid: 8fdd68afc91e00942a28be05ddbbcd20, type: 3}
   uIElements:
     answerContentArea: {fileID: 266156707}
     questionInfoTextObj: {fileID: 1253854683}
@@ -3182,7 +3146,8 @@ MonoBehaviour:
     mainCanvasGroup: {fileID: 978487587}
     finishUIElements: {fileID: 2082470350}
   parameters:
-    margins: 15
+    topMargin: 1
+    answerSpacing: 10
     correctBGColor: {r: 0, g: 0, b: 0, a: 0}
     incorrectBGColor: {r: 0, g: 0, b: 0, a: 0}
     finalBGColor: {r: 0, g: 0, b: 0, a: 0}

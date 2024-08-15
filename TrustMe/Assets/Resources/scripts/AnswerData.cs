@@ -39,6 +39,7 @@ public class AnswerData : MonoBehaviour
         infoTextObject.text = info;
         _answerIndex = index;
     }
+
     public void Reset()
     {
         Checked = false;

@@ -37,7 +37,7 @@ public class Question : ScriptableObject
     [SerializeField] private int _addScore = 10;
     public int AddScore {  get { return _addScore; } }
 
-    public List<int> GetCorrektAnswers()
+    public List<int> GetCorrectAnswers()
     {
         List<int> CorrectAnswers = new List<int>();
         for (int i = 0; i < Answers.Length; i++)

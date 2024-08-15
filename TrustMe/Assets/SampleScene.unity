@@ -156,7 +156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.6500619, y: -69.39997}
+  m_AnchoredPosition: {x: -0.6500619, y: -157.00003}
   m_SizeDelta: {x: 1300, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1306494
@@ -2143,7 +2143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1102899924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2462,6 +2462,7 @@ GameObject:
   - component: {fileID: 1230622229}
   - component: {fileID: 1230622228}
   - component: {fileID: 1230622227}
+  - component: {fileID: 1230622230}
   m_Layer: 5
   m_Name: ResolutionScreen
   m_TagString: Untagged
@@ -2541,6 +2542,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1230622225}
   m_CullTransparentMesh: 1
+--- !u!95 &1230622230
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230622225}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 97d806862c7e5be429dc70d63e557fc5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1253854681
 GameObject:
   m_ObjectHideFlags: 0
@@ -2868,7 +2890,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.6500619, y: 185.60007}
+  m_AnchoredPosition: {x: -0.6500619, y: 98}
   m_SizeDelta: {x: 900, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1461486726
@@ -3133,7 +3155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   events: {fileID: 11400000, guid: 0d5036b2fc509864ba0b0826844ac7da, type: 2}
-  answerPrefab: {fileID: 8679244759639012836, guid: 8fdd68afc91e00942a28be05ddbbcd20, type: 3}
+  answerPrefab: {fileID: 1117194877902543616, guid: fbe07f70310fe3d4083acac200fe16f1, type: 3}
   uIElements:
     answerContentArea: {fileID: 266156707}
     questionInfoTextObj: {fileID: 1253854683}
@@ -3927,7 +3949,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -87.60005}
   m_SizeDelta: {x: -1766, y: -994}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2142844257

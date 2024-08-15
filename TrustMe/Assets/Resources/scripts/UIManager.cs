@@ -36,7 +36,7 @@ public struct UIElements
     public TextMeshProUGUI ScoreText { get { return scoreText; } }
 
     [Space]
-
+    //Animator for ResolutionsScreen Animations
     [SerializeField] Animator resolutionScreenAnimator;
     public Animator ResolutionScreenAnimator { get { return resolutionScreenAnimator; } }
 
@@ -78,6 +78,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] UIManagerParameters parameters;
 
     List<AnswerData> currentAnswers = new List<AnswerData>();
+    private int resolutionState = 0;
 
     private void OnEnable()
     {
@@ -96,10 +97,63 @@ public class UIManager : MonoBehaviour
             events.UpdateQuestionUI -= UpdateQuestionsUI;
         }
     }
+
+    void Start()
+    {
+        //UpdateScoreUI();
+        resolutionState = Animator.StringToHash("ScreenState");
+    }
+
     void UpdateQuestionsUI(Question question)
     {
         uIElements.QuestionInfoTextObj.text = question.Info;
         CreateAnswers(question);
+    }
+
+    //For Resolutions Animation Hidden, PopUp, FadeOut
+    void DisplayResolution(ResolutionScreenType type, int score)
+    {
+
+    }
+    //Designes the UI Resolutions Screen: Text, Score, BG Color
+    void UpdateResolutionUI(ResolutionScreenType type, int score)
+    {
+        var highscore = PlayerPrefs.GetInt(GameUtility.SavePrefKey);
+
+        switch (type)
+        {
+            case ResolutionScreenType.Correct:
+                uIElements.ResolutionBG.color = parameters.CorrectBGColor;
+                uIElements.ResolutionStateInfoText.text = "CORRECT!";
+                uIElements.ResolutionScoreText.text = "+" + score;
+                break;
+            case ResolutionScreenType.Incorrect:
+                uIElements.ResolutionBG.color = parameters.IncorrectBGColor;
+                uIElements.ResolutionStateInfoText.text = "WRONG!";
+                uIElements.ResolutionScoreText.text = "-" + score;
+                break;
+            case ResolutionScreenType.Finish:
+                uIElements.ResolutionBG.color = parameters.FinalBGColor;
+                uIElements.ResolutionStateInfoText.text = "FINAL SCORE";
+
+                StartCoroutine(CalculateScore());
+                uIElements.FinishUIElements.gameObject.SetActive(true);
+                uIElements.HighScoreText.gameObject.SetActive(true);
+                uIElements.HighScoreText.text = ((highscore > events.StartupHighscore) ? "<color=yellow>new </color>" : string.Empty) + "Highscore: " + highscore;
+                break;
+        }
+    }
+
+    IEnumerator CalculateScore()
+    {
+        var scoreValue = 0;
+        while(scoreValue < events.CurrentFinalScore)
+        {
+            scoreValue++;
+            uIElements.ResolutionScoreText.text = scoreValue.ToString();
+
+            yield return null;
+        }
     }
 
     void CreateAnswers(Question question)

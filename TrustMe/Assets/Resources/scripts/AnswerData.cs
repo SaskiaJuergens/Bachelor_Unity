@@ -18,13 +18,14 @@ public class AnswerData : MonoBehaviour
     [SerializeField] GameEvents events;
 
     private RectTransform _rect;
+
     public RectTransform Rect
     { 
-        get 
-        { 
-            if(_rect == null) 
-            { 
-                _rect = GetComponent<RectTransform>() ?? gameObject.AddComponent<RectTransform>(); 
+        get
+        {
+            if (_rect == null)
+            {
+                _rect = GetComponent<RectTransform>() ?? gameObject.AddComponent<RectTransform>();
             }
             return _rect;
         }
@@ -45,19 +46,22 @@ public class AnswerData : MonoBehaviour
         Checked = false;
         UpdateUI();
 
-        if(events.UpdateQuestionAnswer != null)
-        {
-            events.UpdateQuestionAnswer(this);
-        }
+        
     }
     public void SwitchState()
     {
         Checked = !Checked;
         UpdateUI();
-
+        
+        if(events.UpdateQuestionAnswer != null)
+        {
+            events.UpdateQuestionAnswer(this);
+        }
     }
     void UpdateUI ()
     {
+        if (toggle == null) return;
+
         toggle.sprite = (Checked) ? checkedToggle : uncheckedToggle;
     }
 

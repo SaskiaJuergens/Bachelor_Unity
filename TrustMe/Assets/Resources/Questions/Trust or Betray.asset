@@ -15,10 +15,10 @@ MonoBehaviour:
   _info: Vertrauen oder Verrat
   _answers:
   - _info: Verrat
-    _isCorrect: 1
+    _isCorrect: 0
   - _info: Kooperation
     _isCorrect: 1
   _userTimer: 1
   _timer: 30
-  _answerType: 0
+  _answerType: 1
   _addScore: 10

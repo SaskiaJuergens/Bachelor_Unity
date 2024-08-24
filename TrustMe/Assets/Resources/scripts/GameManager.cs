@@ -18,20 +18,46 @@ public class GameManager : MonoBehaviour
     //private int score;
     private IEnumerator IE_WaitTillNextRound = null;
 
+    //getter if finished the Game
+    private bool gameFinished
+    {
+        get
+        {
+            return (finishedQuestions.Count < Questions.Length) ? false : true;
+        }
+    }
+
+    /// <summary>
+    /// Function that is called when the object becomes enabled and active
+    /// </summary>
+    void OnEnable()
+    {
+        events.UpdateQuestionAnswer += UpdateAnswer;
+    }
+    /// <summary>
+    /// Function that is called when the behaviour becomes disabled
+    /// </summary>
+    void OnDisable()
+    {
+        events.UpdateQuestionAnswer -= UpdateAnswer;
+    }
+    /// <summary>
+    /// Function that is called on the frame when a script is enabled just before any of the Update methods are called the first time.
+    /// </summary>
+    void Awake()
+    {
+        //events.CurrentFinalScore = 0;
+    }
 
     private void Start()
     {
+        
+        LoadQuestions();
+
+
         //random qustion wird ausgesucht
         //var seed = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
         //UnityEngine.Random.InitState(seed);
-
-        if (events == null)
-        {
-            Debug.LogError("GameEvents not assigned in the GameManager.");
-            return;
-        }
-
-        LoadQuestions();
 
         if (_questions == null || _questions.Length == 0)
         {
@@ -52,6 +78,7 @@ public class GameManager : MonoBehaviour
         }
         Display();
     }
+
 
     /// Function that is called to update new selected answer.
     public void UpdateAnswer(AnswerData newAnswer)
@@ -84,45 +111,66 @@ public class GameManager : MonoBehaviour
 
     public void EraseAnswers()
     {
-        PickedAnswers = new List<AnswerData>();
+        PickedAnswers = new List<AnswerData>(); 
     }
+
 
     void Display()
     {
         EraseAnswers();
         var question = GetRandomQuestion();
 
-        if (question == null)
-        {
-            Debug.LogError("No question available to display.");
-            return;
-        }
-
-        if (events != null && events.UpdateQuestionUI != null)
+        if (events.UpdateQuestionUI != null)
         {
             events.UpdateQuestionUI(question);
         }
-        else
-        {
-            Debug.LogWarning("Something went wrong while trying to display new Question UI Data. GameEvents.UpdateQuestionUI is null. Issues occurred in GameManager.Display() method");
-        }
+        else { Debug.LogWarning("Ups! Something went wrong while trying to display new Question UI Data. GameEvents.UpdateQuestionUI is null. Issue occured in GameManager.Display() method."); }
+
+        //if (question.UseTimer)
+        //{
+            //UpdateTimer(question.UseTimer);
+        //}
 
     }
 
     public void Accept()
     {
+        //UpdateTimer(false);
         bool isCorrect = checkAnswer();
         finishedQuestions.Add(currentQuestion);
 
         UpdateScore((isCorrect) ? Questions[currentQuestion].AddScore : -Questions[currentQuestion].AddScore);
-        
-        if (IE_WaitTillNextRound != null)
+
+        if (gameFinished)
         {
-            StopCoroutine(IE_WaitTillNextRound);
+            //SetHighscore();
         }
-        IE_WaitTillNextRound = WaitTillNextRound();
-        StartCoroutine(IE_WaitTillNextRound);
-    
+
+        var type
+            = (gameFinished)
+            ? UIManager.ResolutionScreenType.Finish
+            : (isCorrect) ? UIManager.ResolutionScreenType.Correct
+            : UIManager.ResolutionScreenType.Incorrect;
+
+
+        if (events.DisplayResolutionScreen != null) 
+        {
+            events.DisplayResolutionScreen(type, Questions[currentQuestion].AddScore);
+
+        }
+
+        //AudioManager.Instance.PlaySound((isCorrect) ? "CorrectSFX" : "IncorrectSFX");
+
+        if (type != UIManager.ResolutionScreenType.Finish)
+        {
+            if (IE_WaitTillNextRound != null)
+            {
+                StopCoroutine(IE_WaitTillNextRound);
+            }
+            IE_WaitTillNextRound = WaitTillNextRound();
+            StartCoroutine(IE_WaitTillNextRound);
+        }
+
     }
 
     IEnumerator WaitTillNextRound()

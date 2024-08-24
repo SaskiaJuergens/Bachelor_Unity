@@ -12,11 +12,14 @@ public class GameEvents : ScriptableObject
     public UpdateQuestionAnswerCallback UpdateQuestionAnswer;
 
     public delegate void DisplayResolutionScreenCallback(UIManager.ResolutionScreenType type, int score);
-    public DisplayResolutionScreenCallback DisplayResolutionScreen;
+    public DisplayResolutionScreenCallback DisplayResolutionScreen = null;
 
     public delegate void ScoreUpdatedCallback();
-    public ScoreUpdatedCallback ScoreUpdated;
+    public ScoreUpdatedCallback ScoreUpdated = null;
 
-    [HideInInspector]    public int CurrentFinalScore = 0;
-    [HideInInspector]    public int StartupHighscore = 0;
+    [HideInInspector]
+    public int CurrentFinalScore = 0;
+    [HideInInspector]
+    public int StartupHighscore = 0;
 }
+

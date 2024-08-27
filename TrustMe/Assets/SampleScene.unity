@@ -1061,6 +1061,8 @@ GameObject:
   - component: {fileID: 480661102}
   - component: {fileID: 480661104}
   - component: {fileID: 480661103}
+  - component: {fileID: 480661106}
+  - component: {fileID: 480661105}
   m_Layer: 5
   m_Name: Timer
   m_TagString: Untagged
@@ -1126,6 +1128,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 480661101}
   m_CullTransparentMesh: 1
+--- !u!95 &480661105
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480661101}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2cb4e8ed1f8a22748ae3f0a62c870eba, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!225 &480661106
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480661101}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &509517761
 GameObject:
   m_ObjectHideFlags: 0
@@ -2341,7 +2376,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1102899924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3507,6 +3542,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   events: {fileID: 11400000, guid: 0d5036b2fc509864ba0b0826844ac7da, type: 2}
+  TimerAnimator: {fileID: 480661105}
+  timerText: {fileID: 509517763}
+  timerHalfOutColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  timerAlmostOutColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!4 &1590874727
 Transform:
   m_ObjectHideFlags: 0
@@ -4356,7 +4395,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 34483958}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.41917247
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

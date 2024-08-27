@@ -12,11 +12,19 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameEvents events = null;
 
+    //Timer
+    [SerializeField] Animator TimerAnimator = null;
+    [SerializeField] TextMeshProUGUI timerText = null;
+    [SerializeField] Color timerHalfOutColor = Color.yellow;
+    [SerializeField] Color timerAlmostOutColor = Color.red;
+    private Color TimeDefaultColor = Color.white;
+
     private List<AnswerData> PickedAnswers = new List<AnswerData>();
     private List<int> finishedQuestions = new List<int>();
     private int currentQuestion = 0;
     //private int score;
     private IEnumerator IE_WaitTillNextRound = null;
+    private IEnumerator IE_StartTimer = null;
 
     //getter if finished the Game
     private bool gameFinished
@@ -27,23 +35,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /// <summary>
     /// Function that is called when the object becomes enabled and active
-    /// </summary>
     void OnEnable()
     {
         events.UpdateQuestionAnswer += UpdateAnswer;
     }
-    /// <summary>
     /// Function that is called when the behaviour becomes disabled
-    /// </summary>
     void OnDisable()
     {
         events.UpdateQuestionAnswer -= UpdateAnswer;
     }
-    /// <summary>
     /// Function that is called on the frame when a script is enabled just before any of the Update methods are called the first time.
-    /// </summary>
     void Awake()
     {
         //events.CurrentFinalScore = 0;
@@ -51,6 +53,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        TimeDefaultColor = timerText.color;
         
         LoadQuestions();
 
@@ -171,6 +174,48 @@ public class GameManager : MonoBehaviour
             StartCoroutine(IE_WaitTillNextRound);
         }
 
+    }
+
+
+    void UpdateTimer(bool state)
+    {
+        switch (state)
+        {
+            case true:
+                IE_StartTimer = StartTimer();
+                StartCoroutine(IE_StartTimer);
+                break;
+
+            case false:
+                if(IE_StartTimer != null)
+                {
+                    StopCoroutine(IE_StartTimer);
+                }
+                break;
+        }
+    }
+
+    IEnumerator StartTimer()
+    {
+        var totalTime = Questions[currentQuestion].Timer;
+        var timeLeft = totalTime;
+
+        timerText.color = TimeDefaultColor;
+        while (timeLeft > 0)
+        {
+            timeLeft--;
+            if (timeLeft < totalTime / 2 && timeLeft > totalTime / 4)
+            {
+                timerText.color = timerHalfOutColor;
+            }
+            if (timeLeft < totalTime / 4)
+            {
+                timerText.color = timerAlmostOutColor;
+            }
+            timerText.text = timeLeft.ToString();
+            yield return new WaitForSeconds(1.0f);
+        }
+        Accept();
     }
 
     IEnumerator WaitTillNextRound()

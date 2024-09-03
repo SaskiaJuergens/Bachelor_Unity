@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameEvents events = null;
 
     //Timer
-    [SerializeField] Animator TimerAnimator = null;
     [SerializeField] Animator timerAnimator = null;
     [SerializeField] TextMeshProUGUI timerText = null;
     [SerializeField] Color timerHalfWayOutColor = Color.yellow;

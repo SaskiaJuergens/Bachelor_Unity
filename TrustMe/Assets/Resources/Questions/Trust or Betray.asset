@@ -18,7 +18,7 @@ MonoBehaviour:
     _isCorrect: 0
   - _info: Kooperation
     _isCorrect: 1
-  _userTimer: 1
+  _useTimer: 1
   _timer: 30
   _answerType: 1
   _addScore: 10

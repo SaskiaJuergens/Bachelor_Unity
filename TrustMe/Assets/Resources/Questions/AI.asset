@@ -18,7 +18,7 @@ MonoBehaviour:
     _isCorrect: 1
   - _info: Spieler
     _isCorrect: 0
-  _userTimer: 1
+  _useTimer: 1
   _timer: 8
   _answerType: 1
   _addScore: 10

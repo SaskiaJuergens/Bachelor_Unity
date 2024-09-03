@@ -1896,7 +1896,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 905288991}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1590874726}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &905288991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3542,9 +3554,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   events: {fileID: 11400000, guid: 0d5036b2fc509864ba0b0826844ac7da, type: 2}
-  TimerAnimator: {fileID: 480661105}
+  timerAnimator: {fileID: 0}
   timerText: {fileID: 509517763}
-  timerHalfOutColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  timerHalfWayOutColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   timerAlmostOutColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!4 &1590874727
 Transform:
@@ -3837,7 +3849,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1837646941}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1590874726}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1837646941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4395,7 +4419,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 34483958}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.41917247
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

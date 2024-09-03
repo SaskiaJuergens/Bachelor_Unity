@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+
+    #region Variables
+
     private Question[] _questions = null;
     public Question[] Questions { get { return _questions; } }
 
@@ -14,57 +17,62 @@ public class GameManager : MonoBehaviour
 
     //Timer
     [SerializeField] Animator TimerAnimator = null;
+    [SerializeField] Animator timerAnimator = null;
     [SerializeField] TextMeshProUGUI timerText = null;
-    [SerializeField] Color timerHalfOutColor = Color.yellow;
+    [SerializeField] Color timerHalfWayOutColor = Color.yellow;
     [SerializeField] Color timerAlmostOutColor = Color.red;
-    private Color TimeDefaultColor = Color.white;
+    private Color timerDefaultColor = Color.white;
 
     private List<AnswerData> PickedAnswers = new List<AnswerData>();
-    private List<int> finishedQuestions = new List<int>();
+    private List<int> FinishedQuestions = new List<int>();
     private int currentQuestion = 0;
-    
+
     private int timerStateParaHash = 0;
 
-    //private int score;
     private IEnumerator IE_WaitTillNextRound = null;
     private IEnumerator IE_StartTimer = null;
 
     //getter if finished the Game
-    private bool gameFinished
+    private bool IsFinished
     {
         get
         {
-            return (finishedQuestions.Count < Questions.Length) ? false : true;
+            return (FinishedQuestions.Count < Questions.Length) ? false : true;
         }
     }
+
+    #endregion
+
+    #region Default Unity methods
 
     /// Function that is called when the object becomes enabled and active
     void OnEnable()
     {
-        events.UpdateQuestionAnswer += UpdateAnswer;
+        events.UpdateQuestionAnswer += UpdateAnswers;
     }
     /// Function that is called when the behaviour becomes disabled
     void OnDisable()
     {
-        events.UpdateQuestionAnswer -= UpdateAnswer;
+        events.UpdateQuestionAnswer -= UpdateAnswers;
     }
+
     /// Function that is called on the frame when a script is enabled just before any of the Update methods are called the first time.
     void Awake()
     {
         events.CurrentFinalScore = 0;
     }
-
+    /// Function that is called when the script instance is being loaded.
     void Start()
     {
         events.StartupHighscore = PlayerPrefs.GetInt(GameUtility.SavePrefKey);
-        TimeDefaultColor = timerText.color;
-        LoadQuestions();
 
         //events.CurrentFinalScore = 0;
 
+        timerDefaultColor = timerText.color;
+        LoadQuestions();
+
         //Variable = Parameter im Editor im Animatiior the int
-        int timerStateHash = Animator.StringToHash("TimerStat");
-        Debug.Log("TimerState hash: " + timerStateHash);
+        timerStateParaHash = Animator.StringToHash("TimerStat");
 
         //random qustion wird ausgesucht
         //var seed = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
@@ -73,9 +81,10 @@ public class GameManager : MonoBehaviour
         Display();
     }
 
+    #endregion
 
     /// Function that is called to update new selected answer.
-    public void UpdateAnswer(AnswerData newAnswer)
+    public void UpdateAnswers(AnswerData newAnswer)
     {
         if (Questions[currentQuestion].GetAnswerType == Question.AnswerType.Single)
         {
@@ -105,9 +114,8 @@ public class GameManager : MonoBehaviour
 
     public void EraseAnswers()
     {
-        PickedAnswers = new List<AnswerData>(); 
+        PickedAnswers = new List<AnswerData>();
     }
-
 
     void Display()
     {
@@ -124,33 +132,30 @@ public class GameManager : MonoBehaviour
         {
             UpdateTimer(question.UseTimer);
         }
-
     }
 
     public void Accept()
     {
         UpdateTimer(false);
-        bool isCorrect = checkAnswer();
-        finishedQuestions.Add(currentQuestion);
+        bool isCorrect = CheckAnswers();
+        FinishedQuestions.Add(currentQuestion);
 
         UpdateScore((isCorrect) ? Questions[currentQuestion].AddScore : -Questions[currentQuestion].AddScore);
 
-        if (gameFinished)
+        if (IsFinished)
         {
             SetHighscore();
         }
 
         var type
-            = (gameFinished)
+            = (IsFinished)
             ? UIManager.ResolutionScreenType.Finish
             : (isCorrect) ? UIManager.ResolutionScreenType.Correct
             : UIManager.ResolutionScreenType.Incorrect;
 
-
-        if (events.DisplayResolutionScreen != null) 
+        if (events.DisplayResolutionScreen != null)
         {
             events.DisplayResolutionScreen(type, Questions[currentQuestion].AddScore);
-
         }
 
         //AudioManager.Instance.PlaySound((isCorrect) ? "CorrectSFX" : "IncorrectSFX");
@@ -164,10 +169,10 @@ public class GameManager : MonoBehaviour
             IE_WaitTillNextRound = WaitTillNextRound();
             StartCoroutine(IE_WaitTillNextRound);
         }
-
     }
 
     #region Timer Methods
+
     void UpdateTimer(bool state)
     {
         switch (state)
@@ -176,7 +181,7 @@ public class GameManager : MonoBehaviour
                 IE_StartTimer = StartTimer();
                 StartCoroutine(IE_StartTimer);
 
-                TimerAnimator.SetInteger(timerStateParaHash, 2);
+                timerAnimator.SetInteger(timerStateParaHash, 2);
                 break;
             case false:
                 if (IE_StartTimer != null)
@@ -184,17 +189,16 @@ public class GameManager : MonoBehaviour
                     StopCoroutine(IE_StartTimer);
                 }
 
-                TimerAnimator.SetInteger(timerStateParaHash, 1);
+                timerAnimator.SetInteger(timerStateParaHash, 1);
                 break;
         }
     }
-
     IEnumerator StartTimer()
     {
         var totalTime = Questions[currentQuestion].Timer;
         var timeLeft = totalTime;
 
-        timerText.color = TimeDefaultColor;
+        timerText.color = timerDefaultColor;
         while (timeLeft > 0)
         {
             timeLeft--;
@@ -203,27 +207,28 @@ public class GameManager : MonoBehaviour
 
             if (timeLeft < totalTime / 2 && timeLeft > totalTime / 4)
             {
-                timerText.color = timerHalfOutColor;
+                timerText.color = timerHalfWayOutColor;
             }
             if (timeLeft < totalTime / 4)
             {
                 timerText.color = timerAlmostOutColor;
             }
+
             timerText.text = timeLeft.ToString();
             yield return new WaitForSeconds(1.0f);
         }
         Accept();
     }
-
     IEnumerator WaitTillNextRound()
     {
         yield return new WaitForSeconds(GameUtility.ResolutionDelayTime);
         Display();
     }
+
     #endregion
 
     // Function that is called to check currently picked answers and return the result.
-    bool checkAnswer()
+    bool CheckAnswers()
     {
         if (!CompareAnswers())
         {
@@ -261,24 +266,22 @@ public class GameManager : MonoBehaviour
     // Function that is called restart the game.
     public void RestartGame()
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     // Function that is called to quit the application.
     public void QuitGame()
     {
-        //Application.Quit();
+        Application.Quit();
     }
 
     private void SetHighscore()
     {
         var highscore = PlayerPrefs.GetInt(GameUtility.SavePrefKey);
-
-        if (highscore > events.CurrentFinalScore)
+        if (highscore < events.CurrentFinalScore)
         {
-            PlayerPrefs.GetInt(GameUtility.SavePrefKey, events.CurrentFinalScore);
+            PlayerPrefs.SetInt(GameUtility.SavePrefKey, events.CurrentFinalScore);
         }
     }
-
     // Function that updates the score and update the UI.
     private void UpdateScore(int add)
     {
@@ -290,6 +293,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    #region Getters
+
     Question GetRandomQuestion()
     {
         var randomIndex = GetRandomQuestionIndex();
@@ -297,18 +302,18 @@ public class GameManager : MonoBehaviour
 
         return Questions[currentQuestion];
     }
-
     int GetRandomQuestionIndex()
     {
         var random = 0;
-        if (finishedQuestions.Count < Questions.Length)
+        if (FinishedQuestions.Count < Questions.Length)
         {
             do
             {
                 random = UnityEngine.Random.Range(0, Questions.Length);
-            } while (finishedQuestions.Contains(random) || random == currentQuestion);
+            } while (FinishedQuestions.Contains(random) || random == currentQuestion);
         }
         return random;
     }
 
+    #endregion
 }

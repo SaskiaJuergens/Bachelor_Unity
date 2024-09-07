@@ -157,7 +157,7 @@ public class GameManager : MonoBehaviour
             events.DisplayResolutionScreen(type, Questions[currentQuestion].AddScore);
         }
 
-        //AudioManager.Instance.PlaySound((isCorrect) ? "CorrectSFX" : "IncorrectSFX");
+        AudioManager.Instance.playSound((isCorrect) ? "CorrectSFX" : "IncorrectSFX");
 
         if (type != UIManager.ResolutionScreenType.Finish)
         {
@@ -202,7 +202,7 @@ public class GameManager : MonoBehaviour
         {
             timeLeft--;
 
-            //AudioManager.Instance.PlaySound("CountdownSFX");
+            AudioManager.Instance.playSound("CountdownSFX");
 
             if (timeLeft < totalTime / 2 && timeLeft > totalTime / 4)
             {

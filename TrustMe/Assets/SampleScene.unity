@@ -837,6 +837,88 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 364755316}
   m_CullTransparentMesh: 1
+--- !u!1 &370384243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 370384245}
+  - component: {fileID: 370384244}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &370384244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370384243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f9306c7e0937c2458aa2bb3bd461b08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: CorrectSFX
+    clip: {fileID: 8300000, guid: 42e23e74e8e21ec4f9660798c548349d, type: 3}
+    parameters:
+      Volume: 0.4
+      Pitch: 1
+      Loop: 0
+    Source: {fileID: 0}
+  - name: CountdownSFX
+    clip: {fileID: 8300000, guid: 524dff9794a9e69409cf0667cbd2f5a6, type: 3}
+    parameters:
+      Volume: 0.4
+      Pitch: 1
+      Loop: 0
+    Source: {fileID: 0}
+  - name: Game Music
+    clip: {fileID: 8300000, guid: 28649d97c17a41443be99deb3baf5c81, type: 3}
+    parameters:
+      Volume: 0.4
+      Pitch: 1
+      Loop: 1
+    Source: {fileID: 0}
+  - name: IncorretSFX
+    clip: {fileID: 8300000, guid: 4032a5dbb358d5447986bd28537545a4, type: 3}
+    parameters:
+      Volume: 0.4
+      Pitch: 1
+      Loop: 0
+    Source: {fileID: 0}
+  - name: 
+    clip: {fileID: 8300000, guid: 10c560a7596f6a74da2846c07260e0d7, type: 3}
+    parameters:
+      Volume: 0
+      Pitch: 0
+      Loop: 0
+    Source: {fileID: 0}
+  sourcePrefab: {fileID: 3282140161409544221, guid: ea648c0d6d2628947aa0927c3007e8d0, type: 3}
+  startupTrack: Game Music
+--- !u!4 &370384245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370384243}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 398.61542, y: 197.2038, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &428179958
 GameObject:
   m_ObjectHideFlags: 0
@@ -2388,7 +2470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1102899924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3554,7 +3636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   events: {fileID: 11400000, guid: 0d5036b2fc509864ba0b0826844ac7da, type: 2}
-  timerAnimator: {fileID: 0}
+  timerAnimator: {fileID: 480661105}
   timerText: {fileID: 509517763}
   timerHalfWayOutColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   timerAlmostOutColor: {r: 1, g: 0, b: 0, a: 1}
@@ -4608,3 +4690,4 @@ SceneRoots:
   - {fileID: 978487586}
   - {fileID: 1102899927}
   - {fileID: 1590874727}
+  - {fileID: 370384245}

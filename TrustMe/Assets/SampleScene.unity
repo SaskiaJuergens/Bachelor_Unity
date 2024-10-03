@@ -2470,7 +2470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1102899924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4209,7 +4209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1971816374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4271,7 +4271,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 31
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &1971816377
 RectTransform:
@@ -4501,7 +4501,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 34483958}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.41917247
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

@@ -2,6 +2,7 @@
   "dependencies": {
     "com.unity.collab-proxy": "2.4.4",
     "com.unity.feature.development": "1.0.1",
+    "com.unity.netcode.gameobjects": "1.9.1",
     "com.unity.nuget.newtonsoft-json": "3.2.1",
     "com.unity.services.matchmaker": "1.1.5",
     "com.unity.textmeshpro": "3.0.6",

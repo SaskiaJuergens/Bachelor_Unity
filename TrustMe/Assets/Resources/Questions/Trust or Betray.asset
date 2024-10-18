@@ -12,13 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7fa2b639ab106d4bb482e28da3d5374, type: 3}
   m_Name: Trust or Betray
   m_EditorClassIdentifier: 
-  _info: Vertrauen oder Verrat
-  _answers:
-  - _info: Verrat
-    _isCorrect: 0
-  - _info: Kooperation
-    _isCorrect: 1
+  _info: Which Player is AI?
+  _answers: []
   _useTimer: 1
-  _timer: 30
-  _answerType: 1
-  _addScore: 10
+  _timer: 45
+  _answerType: 0
+  _addScore: 0

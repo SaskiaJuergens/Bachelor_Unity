@@ -12,13 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7fa2b639ab106d4bb482e28da3d5374, type: 3}
   m_Name: AI
   m_EditorClassIdentifier: 
-  _info: AI oder Spieler?
-  _answers:
-  - _info: AI
-    _isCorrect: 1
-  - _info: Spieler
-    _isCorrect: 0
+  _info: Click on an AI Player
+  _answers: []
   _useTimer: 1
-  _timer: 8
-  _answerType: 1
-  _addScore: 10
+  _timer: 10
+  _answerType: 0
+  _addScore: 0

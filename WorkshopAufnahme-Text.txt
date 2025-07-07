@@ -1,0 +1,1346 @@
+Kannst du nicht gesprungen sein?
+Mein Mann ist da natürlich schon noch auf Band.
+So läuft das, ja.
+Ich hoffe.
+Okay, gut.
+Okay, dann fange ich mal an.
+Also ich möchte jetzt jetzt mal meine Fashion-Hour-Einsatz präsentieren,
+beziehungsweise die Idee darunter.
+Und zwar ist es jetzt generell um ein KI-geschütztes Spread-Modeling-Interface,
+das ich programmieren möchte.
+Und ich werde einmal kurz auch am Anfang über Definitionen reden,
+die vielleicht einmal wo für alle wichtig wären,
+die halt wichtig im Kontext sind und vielleicht nicht jeder kennt.
+Dann erzähle ich auch kurz über Umstände studieren,
+die bereits ein bisschen in die Richtung etwas extern ausprobiert haben
+und schon gewisse Ergebnisse haben.
+Dann halt ganz grob, was unser Anfangsbereich ist und so die Idee.
+Und dann halt ein bisschen ein kleines Beispiel.
+Ich werde dann auch...
+Genau erzählen, was ich erwarte, wenn ich einen verschiedenen Teilnehmer-Tipp habe,
+damit wir dann später gemeinsam eine Bewertung bekommen
+oder beziehungsweise erst in einem Recht der Diskussion kommen,
+wie wir diese Idee vielleicht ausarbeiten, worauf wir achten müssen und so weiter.
+Erstmal zu den Definitionen.
+Also erstmal was ist Spread-Modeling so generell für dieses Thema?
+Das ist ja essentiell.
+Es ist ja ein Prozess, den gerade noch bevor man das Programmieren anfängt,
+dass man bestimmte Schwachstellen, Bedrohungen halt schon mal aus...
+für das System, was entwickelt werden muss, schon mal herausfinden kann.
+Weil es ist essentiell, das bevorzumachen.
+Sobald es programmiert wird, ist das umfassbar viel umständlicher und kostenintensiver,
+bis dann noch zu ändern, wenn dann erst die Bedrohung aufgefallen ist.
+Dann muss es...
+Ganz auch wichtig, das am Anfang zu machen.
+Dafür gibt es dann halt einen speziellen Prozess, den man sich halt im Endeffekt sehen kann.
+Also zuerst hat man ja dieses Objekt, also das System, was man magne-definieren, das man haben möchte.
+Man muss identifizieren, genau, was man dann alles braucht, was man machen möchte, genau.
+Daraufhin muss man halt schauen, wo genau könnten das Schwachstellen sein, wo man angreifen kann.
+Und dann daraufhin zu schauen, was kann man dagegen tun.
+Um es schon im Voraus zu sagen, was könnte man dagegen als Abwehrmechanismus benutzen.
+Da wird zum Beispiel ganz oft Stride als Methode benutzt.
+Es gibt noch viel mehrere, aber in meiner Arbeit wird das mehr essentiell sein.
+Beziehungsweise werde ich das zwischen mich aufgreifen.
+Das heißt, das ist dann wichtiger als die ganzen anderen.
+Also das ist einfach eigentlich ein bestimmtes Threadmodelling-Modell.
+Und zwar das geht nach einem speziellen Prinzip.
+Das ist verschieden.
+Dass es verschiedene Arten von Bedrohungen gibt.
+Also zum Beispiel das Roofing geht darum, dass sich irgendwer, dass andere sich als deine Identität ausgeben könnten.
+Und dass man da nun zum Beispiel schauen kann, wie man zum Beispiel das verhindern kann,
+wie man in ganz vielen Applications zum Beispiel, dass du Passwörter geschützt hast,
+oder extra so zweimal diese Multi-Passwort-geschütz-Mechanismen,
+also einmal Passwort und dann auch noch, dass du eine E-Mail oder eine SMS bekommst.
+Genau.
+Und deshalb noch weitere.
+Also ich wollte jetzt einfach nur Stride einmal aufzählen, damit man das so im Bogen kennt.
+Das ist die einzelnen Sachen, die jetzt nicht essentiell wiederkommen.
+Darum gehe ich da jetzt nicht genau drauf ein.
+Und für halt dieses Threadmodelling, was jetzt bei meiner Arbeit noch mit drin vorkommt,
+ist das Dataflow-Diagramm.
+Und hier habe ich auch ein Beispiel mit aufgezählt.
+Also ein einfaches.
+Wenn es zum Beispiel um eine Webseite geht, wo man einfach nur irgendwelche Sachen wie Kleidung verkauft.
+Und ein Dataflow-Diagramm geht halt genau darum, wie halt die Daten durch dieses System fließen.
+Hier zum Beispiel, dass zuerst die Daten von einem Käufer zum Beispiel auf das System,
+sagen wir mal, eingespeichert werden.
+Zum Beispiel, was willst du genau kaufen, damit diese Daten halt im System gespeichert werden.
+Dann musst du halt dafür halt auch eine Bescheinigung, Bescheinigung halt wiederkommen.
+Aber dieses System gibt dann diese Order, die du bestellt hast.
+Diese Daten kommen halt einmal zum System.
+Und dieses System sagt dann, dass diese Kleidung geordert wird.
+Und das wird dann halt zur Verkaufung wiedergebracht.
+Also das, so ist halt der Datakurs in dem Sinne.
+Oder bei einem normalen System, einem einfachen, gibt es zum Beispiel fast ein Handy.
+Dann hast du halt, wie zum Beispiel zu Hause, wenn du, wo man zwischen deinem Handy benutzt,
+um die Rolle hin und her runterzufahren.
+Das ist ja auch eine gewisse Art von einem Datenfluss.
+Der halt dann über zum Beispiel die Cloud und den Gateway und halt die App und den User geht.
+Bis dann halt ganz zum Schluss, also zu dieser, zu den Rollern.
+Genau, und dann ist es halt wichtig, was ich daraufhin halt sagen will, zu diesem speziellen Bereich.
+Wie zuverlässig ist es zum Beispiel, diese LNMs als, also LNM als Hilfsmittel für das Threat Modeling
+auf Basis von diesen Datenflow-Diagramms zu haben.
+Damit man halt schon eine Grundlage hat, wer benutzt sich halt die DS, also die Datenflow-Diagramme,
+damit man einen Bindungspunkt schon mal hat und schon mal einen, sag ich mal, Ansatz,
+ohne dass man gleich mit dem großen KI-Modell einfach irgendwie reingebrochen wird.
+Und da sind halt ganz wichtige Punkte.
+Einmal, was für, was die Rolle des Menschen ist, inwiefern er damit arbeitet, was für
+Hilfe gibt er der KI und dann halt auch noch, was die einzelnen Anforderungen, zum Beispiel
+halt LNM Security oder so.
+Und dann auch, was die anderen Development-Experten so an dieses System haben, dass sie sagen,
+es ist vertrauenswürdig, es macht überhaupt nicht mehr Sinn oder es ist mehr Zeitaufwendig,
+als es wirklich dann zum Schluss gute Ergebnisse bringt.
+Genau, dann halt, wie gesagt, was halt Risiken und Notzungen überhaupt entstehen werden,
+zum Schluss.
+So, bereits bestehende Studien haben gezeigt, dass Datenflow-Diagramme und LNMs zusammen
+eigentlich relativ gut funktionieren.
+um realistische Bedrohungen identifizieren zu können.
+Vor allem als Kombination.
+Das wurde mit mehreren Gruppen ausgeführt.
+In der Studie von ...
+Ich kann den Namen aber irgendwie nicht aussprechen.
+Wurde halt mit mehreren Gruppen ausgeführt.
+Eine, die hatten nur DFDS und andere hatten nur LMS.
+Weil eine Gruppe hatte beides und eine Kategorie.
+Und da hat man halt gemerkt, dass das als Kombination wirklich gut funktioniert hat,
+in der Zeit, wenn man nur eines davon hatte.
+Wobei man halt auch in der Studie tatsächlich gemerkt hat,
+dass ohne beides es auch relativ gut funktioniert hat.
+Oder es hat halt mehr Zeit gebraucht.
+Aber dafür gab es weniger Fehlerquote, worauf ich später nochmal eingehe.
+Dann gab es noch eine andere Studie, daraufhin wurde halt nochmal gezeigt,
+dass da halt wieder die Zeit sehr viel gespart wurde.
+Und es hat die Produktivität gesteigert, mit einer KG zusammenzuarbeiten.
+Man hat halt aber da nicht nur eine DFD benutzt, sondern die auch noch erstellt.
+Was halt dann zu größeren Fehlerproblemen geführt hat,
+weil die DFD halt die KG zwischendurch nicht richtig erstellt.
+Und dann gab es noch mehr Probleme.
+Dann gab es noch ein weiteres Programm, Engineering und Up-to-Firm-Modelling.
+Mit einem kleineren Modell einen kleinen, relativ effektiven Ansatz hatten.
+Was aber halt die Grenzen vor allem waren,
+ist, dass ganz oft halt falsche, positive Angaben...
+Ihr könnt heute leider den Raum nicht benutzen,
+weil hier so eine Workshow ist.
+Und ich wusste nicht, dass ihr Donnerstag...
+Das ist mein studentisches Projekt, die wir nach dem Morgenprojekt tragen.
+Da sind wir ein bisschen gestresst.
+Hätte ich nicht bedacht.
+Unsere sind überhaupt nicht gestresst.
+Ne, die sind auch viel zu entspannt.
+Aber sie wollen sich nochmal treffen heute.
+Und hier die Grenzen, für was in den Studien rausgekommen ist,
+ist vor allem, dass halt sehr viele falsche, positive Bedrohungen genannt wurden.
+Also ganz oft ist es passiert, dass es mehrere Bedrohungen gab,
+die gar nicht existiert haben.
+Und ganz oft wurden Kontext- oder domainspezifische Bedrohungen
+über selten erkannt, weil das zu komplex für die KI wurde.
+Auch das Problem war, dass viele Menschen halt gerade,
+weil sie vielleicht die Expertise eben halt nicht haben,
+von diesen false positive Rückmeldungen halt schnell einfach das so angenommen haben.
+Das heißt, da hat es oft auch die einfach die Expertise gefehlt,
+die das vielleicht hätte verhindern können.
+Natürlich ist auch immer noch in den Studien die Frage gewesen,
+mit der Ethik oder dem Datenschutz,
+weil man hat ja schon ganz viele Daten immer noch von den Größern
+und von den DFDs bekommen.
+Und da muss man halt schauen, ob man das,
+ob die verschiedenen Nutzer das überhaupt möchten,
+oder ob das irgendwie verhinderbar ist.
+Genau, also trotzdem ist halt immer noch sehr relevant,
+dass man die DFD und die Stride benutzt.
+Immerhin ist das dann sozusagen, wie ich schon gesagt habe,
+die Grundlage, damit halt der Mensch und die KI besser kommunizieren,
+weil in dem einen Experiment halt gezeigt wurde,
+wenn die KI auch noch die DFD erstellen muss,
+ist das noch ein größerer Faktor,
+dass da noch mehr Probleme auftauchen.
+So, jetzt komme ich halt zu unserem Ansatz.
+Also unser Ansatz ist an sich,
+dass ich an sich ein Interface mit Prompt Engineering so entwickle.
+Also an sich stellen wir uns jetzt gerade noch so ganz grob
+vielleicht so einen Chatfall, also ein Chatinterface vor,
+wo man halt an der KI mit der Chat-UVT halt wahrscheinlich das verlinken kann.
+Dort soll man verschiedene, sag ich mal, Nutzen
+oder Features drin sein, die halt das erleichtern sollen,
+die dann halt auch Grundlagen von unserer Diskussion erstellt werden,
+was wir denken, was wir halt definitiv brauchen,
+worauf wir wirklich Fokus legen, was wir wichtig finden,
+damit das wirklich ein Tool ist, das einen unterstützt und hilft.
+Und genau, an sich ist halt wichtig, dass wir die DFD uploaden können
+beziehungsweise, dass wir die von vornherein drin haben,
+damit das halt als Grundlage wieder dient.
+Und die halt von vornherein dann als Chat-UVT,
+also mit Chat-UVT in Verbindung steht und das drinnen ist.
+Und ein Ansatz war für uns auch gleich,
+dass wir dann in der nächsten Studie dann auch noch Chain of Thoughts Ansatz haben.
+Das heißt, dass wir das dann mit den Probanden,
+mit den Teilnehmern das dann so machen,
+dass die halt immer wieder dann Zurückfragen stellen
+und das dann wirklich eine Kette von Gedanken sind,
+die man hin und her, sag ich mal, mit dem,
+mit der KI hat,
+damit man viele Fragen, Fehler vielleicht auch noch selbstständig
+mit der KI ausradieren kann.
+Dann einmal halt zu den Erwartungen, die wir hier an sich,
+also die ich habe heute.
+Also an die verschiedenen Experten hier.
+Es ist halt, also einmal ist es wichtig für,
+gerade bei den L&M-Experten,
+dass wir genau wissen, wie man am besten mit einer KI denn wahrscheinlich reden kann.
+Was für gewisse Inputs sind wichtig,
+wie kann ich meinen Input verbessern,
+sodass die KI am besten verstehen kann, was ich halt möchte.
+Also wie bewerten sie halt bestimmte Fund-Strukturen,
+wie könnte man die Begründung verbessern,
+oder welche Arten oder Analysen-Aufgaben,
+oder bringt es halt so die Chain of Thought,
+ob das der richtige Ansatz ist,
+oder ob es eine andere, eine bessere gibt.
+Denn bei den Sicherheitsexperten ist halt die Frage,
+es soll halt einmal dazu sein,
+es soll ja entweder beim Threat Modelling,
+also wie genau die KI, was sie ausgibt,
+inwiefern sie damit weiterarbeiten können,
+beziehungsweise wie vertrauenswürdig sie die Antworten finden,
+ob das wirklich schon reicht, was da ist,
+beziehungsweise ob da Bedrohungsvorschräge fehlen,
+wie man die, oder welche zu,
+ob man bestimmte Kontextbedrohungen vielleicht von vornherein rauslässt,
+weil man gemerkt hat, dass die KI vielleicht,
+das nicht hinbekommt,
+und stattdessen halt von vornherein einen anderen Ansatz gibt,
+dass da einfach nur die KI dazu da ist,
+um die einfachen Basisgrundlagen schneller dann aufzeigen zu können,
+um dann halt als, sag ich mal, Hilfsmittel am Anfang
+und Zeit zu sparen hilft,
+weil später vielleicht einfach zu schwierig ist,
+oder ob man das doch realistisch umsetzen kann,
+wie vielleicht das am besten geht.
+Für die Softwareentwickler ist es dann halt,
+aufgrund von dem Output,
+ob man wirklich damit weiterarbeiten kann,
+ob man das realistisch umsetzen kann,
+inwiefern würden sie halt mit diesem Output weiterarbeiten müssen.
+Genau, jetzt hätte ich zum gemeinsamen Werten davon
+ein Live-Voting.
+Entschuldigung.
+Die Teilseite hier auch gleich noch stehen,
+also,
+ja, die steht hier oben.
+Hier kann man das dann dann einstellen.
+Ich hoffe, das funktioniert.
+Ich benutze es zum ersten Mal.
+Ich komme zumindest weiter.
+Ich hoffe, Sie können vielleicht schon das erste Live-Voting sehen.
+Mhm.
+Okay, also lassen wir jetzt so grundlegende Fragen erstmal
+zu der grundlegenden Idee,
+ob das, ich glaube, ich habe einen Slide übersprungen,
+ich hätte leider sagen müssen,
+aber dann würde ich auch einmal kurz sehen.
+Scheinbar.
+Genau, ich hätte nämlich noch ein kurzes Beispiel gehabt.
+Ja.
+Also, ich glaube, Sie übersprungen.
+Genau, also hier hatte ich,
+also ganz grundlegend habe ich einmal geschaut,
+was JGPT einmal an,
+nur die allererste Antwort, sage ich mal,
+negieren würde, wenn ich sage,
+wenn ich sage, für die Sicherheitswirkung,
+weil der DfD,
+den ich halt gleich am Anfang gezeigt habe,
+also ein ganz simpler DfD,
+ist halt jetzt nicht zu komplex,
+und daraufhin hat eben einfach nur
+ein paar grundlegende Fehleransätze gezeigt,
+die, also, man kann halt,
+man muss halt da schauen,
+wie man sich auch identifiziert,
+halt der Schutz für Datenübertragung
+könnte hier nicht vorhanden sein,
+oder halt fehlende Eingaben,
+also fehlende variierende Eingabendaten,
+ist halt,
+es fehlt, dass du es halt einmal verifizieren musst,
+oder fehlende Rückmeldung,
+also wirklich die grundlegenden Sachen.
+Genau, das war halt die allererste,
+ähm,
+allererste Beispiel.
+Das war jetzt so die allererste Antwort,
+ich habe gleich später noch ein etwas,
+ein kleines Demo-Video,
+wo ich dann ein bisschen mehr mit Chain of Thoughts gearbeitet habe,
+das heißt, das ist,
+wo ich dann auch noch ein bisschen
+hin und her geschrieben habe,
+ähm,
+das würde ich gleich als nächstes einmal zeigen.
+Wenn es zu schnell ist,
+Anja, würdest du sagen?
+Ich würde sagen, ich könnte das,
+ich wüsste das jetzt nicht zu beurteilen.
+Genau, dann ist es okay,
+wenn man auf eigene Fragen,
+beziehungsweise eigene Gefühle,
+dann gleich beantwortet.
+Bis später habe ich auch noch eine Zeit eingebaut,
+die jeder hinschreiben muss,
+aus welchem Dom, aus welcher Domäne er kommt,
+und was für...
+Könntest du dann die Analyse nochmal zeigen?
+Äh, kann ich vielleicht machen,
+diese, also das ist jetzt auch noch mal eine Analyse,
+die ist, glaube ich,
+ein bisschen interessanter,
+also wichtiger, weil ich da,
+wenn ich da hin und her schreibe,
+da könnte ich auch vielleicht
+zwischen ein bisschen was dazu sagen.
+Sollen wir die auch noch in dieser ersten,
+ähm, Beantwortung mitmachen?
+Oder ist das...
+Ja, genau.
+Okay.
+Also ich habe, also das gehört beides zusammen,
+ich wollte eben einmal kurz,
+wie es startet,
+einmal den Grund,
+wenn ich kurz rübergehen kann,
+das zeigen,
+aber das ist jetzt so die,
+die Demo für mich.
+Genau, also am Anfang habe ich,
+äh,
+also hier ist einmal das Bild drin,
+von der Diabetes,
+die gleichen,
+die ich halt die ganze Zeit schon gezeigt habe.
+Das zeige ich hier jetzt auch noch mal,
+also wirklich mit genau das gleiche Bild.
+So.
+Äh, hier habe ich dann tatsächlich am Anfang
+einmal geschrieben,
+ähm,
+wie, äh,
+hier habe ich direkt gleich gesagt,
+dass ich das DFD benutzen möchte,
+was ich halt geschickt habe,
+und zwar auf, äh,
+Grundlage von Stride.
+Das heißt, hier wollte ich gleich von Anfang an
+halt das DFD plus die Stride-Methodik
+von mit Print Modeling benutzen,
+dass halt JTB-Team hier genau halt mit
+Spoofing, Tempering und diesen ganzen Sachen,
+äh,
+gleich darauf hinaus,
+wenn nicht so wie beim allerersten,
+was ich gezeigt habe,
+wo er mir grundlegend einfach irgendwas
+hingeworfen hat, sozusagen,
+sondern wirklich auf Grundlage von Stride.
+Hier wären, ähm,
+zum Beispiel Spoofing,
+das war jetzt authentifizieren
+und Wer bist du?
+Da sind zum Beispiel mögliche Bedrohungen
+genau zu den, ähm,
+also wie der Angreifer tatsächlich dann,
+ähm,
+diese,
+dieses System auslösen kann,
+um bestimmte Bedrohungen oder Attacken
+oder jemanden angreifen zu können.
+Und er hat auch gegen was nach wie vor, äh,
+geschlagen,
+wie Authentifizierung,
+Zweifaktor,
+Authentifizierung,
+was ich auch irgendwas genannt hatte.
+Ähm,
+das hat er dann halt
+für alle Stride-Komponenten genannt,
+also Tempering dann auch noch,
+äh, also Abstreifbarkeit,
+ähm,
+genau.
+Also im Grunde hat er einmal mögliche Bedrohungen
+und Gegenmaßnahmen genannt,
+ähm,
+kurz.
+Ähm,
+genau.
+Als nächstes fand ich,
+dass sich Ausgleichen
+und Hammergefahr
+äh,
+auch wenn man ja mehr im Spezial erklären könnte,
+ähm,
+wie es zum Spoofing kommt,
+weil es wurde zum Beispiel ja genannt,
+also wenn man kein Experte ist,
+weiß man nicht, was Spoofing ist
+oder wie genau es dazu kommt.
+Er hat ja nur geschrieben,
+der Angreifer kann zum Beispiel,
+äh,
+es ausnutzen,
+wenn es nicht,
+äh,
+wenn man zum Beispiel nur im Passwort geschützt ist,
+dass man das umgehen kann,
+aber nicht,
+wie es genau dazu kommen kann.
+Und,
+ähm,
+da hab ich da einfach nur mal nachgefragt.
+Das heißt,
+die Transparenz der KI war da halt zum Beispiel nicht gegeben.
+Das heißt,
+für normale Nutzer,
+die halt nicht die Expertise hatten,
+wurden viele,
+also hätten da noch nicht so viel Anliegen gehabt.
+Daraufhin erklärt er halt,
+was Spoofing genau ist,
+was Möglichkeiten sind,
+ähm,
+also mögliche Szenarien.
+Es geht um die AfD,
+die da halt Spoofing herbeibringen.
+Genau.
+Und hier zum Beispiel,
+da fahren wir vorne zum,
+zum Clause-System,
+also da gehen dann Wörter aus der AfD ein,
+dass halt in diesem Datenfluss,
+von vorne zu,
+ja,
+äh,
+zum System,
+äh,
+das Problem ist,
+dass man da halt
+sich sicher einbloggen muss,
+damit es halt
+so keine Probleme
+von Angreifern kommen kann.
+Immer noch,
+also,
+ich glaube,
+es lag nicht zu viel
+für meine Bewertung
+zu den Antworten,
+ähm,
+genau,
+also hier sagt man halt auch mal,
+was die Sicherheitsregeln sind,
+zum Beispiel,
+vielleicht keine Autifizierungsmechanismen,
+oder,
+ähm,
+keine klaren Session-
+oder Benutzverwaltung im DFD.
+Also,
+das sieht man da halt
+in dem DFD halt nicht.
+Und dann gibt es halt hier wieder,
+was,
+ähm,
+was,
+ähm,
+was,
+ähm,
+was,
+wie es ausgenutzt werden kann,
+und was genau,
+äh,
+der Attacker dann eventuell machen kann,
+zum Beispiel ein Wort benutzen,
+um automatische Bestellungen
+und sowas zu generieren
+und zu versenden.
+Genau,
+das macht er dann.
+Bei allen
+Flussrichtungen
+in das DFD,
+wo es halt
+Spoofing
+hervorrufen kann,
+jeder erhält
+nicht genau
+jedes dieser
+Beispiele
+ein.
+Und,
+ähm,
+das ist
+das,
+ähm,
+das,
+ähm,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+das,
+ähm,
+die einzige Maßnahme sein sollte, darauf hat er zum Beispiel auch eine Checkliste gemacht,
+worauf man dann nochmal genauer achten sollte, wenn man dann halt sein System gegen Skrupulen,
+vor Skrupulen sicher machen möchte.
+Also halt die grundlegenden Sachen wie der Mindestlänge von 12 Zeichen und genau diese 2-Faktor-Authentifizierung.
+Und dann hat er halt auch weitere geknüpft.
+Zum Schluss hat er auch zum Beispiel so über
+hoch gesagt, dass es halt die Authentifizierung, die er vorgestellt hat, war teilweise,
+über Skrupulen hin, aber den anderen zum Beispiel dann gar nicht.
+Ich habe jetzt noch eine Frage gestellt zu dem, was er uns dann geschrieben hat.
+Und zwar gehe ich jetzt nochmal darauf ein, dass er hier oben bei der Checkliste,
+genau, hier hat er halt
+gesagt, hat er irgendwie so die Empfehlung von Passwortrichtlinien genannt.
+Ich zum Beispiel wusste jetzt, dass es so etwas wie SQL und Projection und so gibt.
+Also noch bei so einer Art, wie ich halt gesagt habe, dass man mithilfe von bestimmten Techniken aus Programmiersprachen
+halt das Passwort in sich hin gibt. Das heißt, man muss den Passwort-Guide erst eingeben, um reinzukommen.
+Und da hat Judge Fetty dann halt zum Beispiel wieder geantwortet, dass es davon nicht schützt.
+Aber das hat er auch zum Beispiel gar nicht erst erwähnt.
+Das heißt, verschiedene Bedrohungen, wo ich schon angefangen hatte, die das alles nicht,
+die das alles schon in Erinnerung geben können, lernt er auch gar nicht erst.
+Also hier sind die Beispiele von SQL-Injection.
+Also dass man zum Beispiel halt das Passwort einfach ausklammert.
+So wie beim Programmieren, dass man einfach die Zeichen für den Kommentar in die Passwortzeile packt.
+Wenn es davon nicht geschützt ist, dann ist auch ein SFA, also ein Typ Faktor Autentifizierung nicht hilfreich,
+weil man weiß gar nicht, dass es braucht, um ins Team zu kommen.
+Also das war ein kleines Beispiel von mir,
+wie ich dann ein bisschen mit Judge Fetty gearbeitet habe,
+als junge Studentin mit keinem Expertisenwissen in keines der Fächer, würde ich jetzt mal sagen.
+Und trotzdem habe ich halt in Chain of Thoughts immer noch verschiedene Sachen herausfinden können.
+Okay, mal fragen, was du mit Chain of Thoughts denn meinst?
+Chain of Thoughts ist das, was in der Demo war,
+was ich gerade gemacht habe.
+Du hast, ich schreibe mit der KI, so ein Wechselblatt von Himmel zu Erde.
+Meiner Meinung nach nicht.
+Meiner Meinung nach ist Chain of Thoughts, wenn ein Reasoning Model erklärt, was ist reasoned.
+Also wenn es halt sagt, ich denke darüber nach, nee, stimmt nicht, das ist ja das,
+deswegen muss ich das und das machen und deswegen muss ich hier und hier hingucken.
+Und SQL Injection, was bedeutet das nochmal?
+Das ist Chain of Thoughts und nicht Ping Pong mit dem Modell.
+Also hin und her schreiben hat mit Chain of Thoughts nichts zu tun.
+Ja, stimmt. Ich habe es falsch erklärt.
+Ich habe Judge Fetty ja dazu angeregt, sage ich mal, darauf, was er geschrieben hat.
+Macht es aber nicht.
+Also wenn du es technisch liest, macht es das ja nicht, weil du hast kein Reasoning Modell benutzt.
+Okay.
+Aber du hast ein Modell benutzt, was einfach nur LLM-Output hat, was ja auch vollkommen in Ordnung ist,
+also muss man ja nicht, aber wenn du ein Reasoning Modell hättest, dann hättest du halt dieses,
+hättest du da halt oben immer sozusagen drinstehen, so jetzt denke ich darüber nach und wo bin ich hier eigentlich
+und was ist eigentlich der Kontext und warum ist es jetzt gut, nochmal irgendwie Passwörter zu machen.
+Das wäre Chain of Thoughts.
+Dann haben wir es zum Beispiel gestartet.
+Ja.
+Also du meinst einfach den Dialog, den du hast.
+Ja.
+Genau.
+Also ich habe, muss ich sagen, mal Judge Fetty darüber angeregt, dass er mir nochmal genau erklärt, was er da gemacht hat.
+Ja, okay.
+Dieses Reasoning wird hinterher selbst mir herausgenommen.
+Das wäre halt eine Alternative zu sagen, ich benutze einfach mal ein Reasoning Modell und gucke, ob dann vielleicht das irgendwie besser wird,
+obwohl es vielleicht nicht ganz so spannend ist, weil man dann immer 10.000 Modelle miteinander vergleichen kann.
+Irgendwie kommt man dann halt auf den Punkt.
+Genau.
+Genau.
+Und dann jetzt, eigentlich jetzt zum Live-Routine, einmal über das, was in dem Video gezeigt wurde.
+Nicht, dass das, das Bild, was ich hier mal gezeigt habe, so grobe Überblick war, aber umstrahlte.
+Und das ist mir jetzt auch das Demo angegeben, das Demo-Video.
+Vielen Dank.
+Vielen Dank.
+Danke.
+Dabei einmal.
+
+
+Oder waren da auch noch andere persönliche Daten sozusagen verlegt, weil die Ein- und Ausgaben ja auch immer stark davon abhängen, was das System jetzt gespeichert hat?
+Ja, das kann man ja auch sagen, aber man kann auch mit der TNT, man kann es ja auch ausschalten, man muss es ja erlauben, dass es seine Daten eingeht, bzw. verwenden darf und sich eigenständig verbessern, das zum Beispiel habe ich nicht.
+Aber ja.
+Man hat schon dank einer gewissen Züge von einem Geschäftsführer benutzt wahrscheinlich, wobei ich Chat-GPT auch nicht so häufig benutze.
+Mein Chat-GPT verwendet keine Ereignisse oder keine Emojis.
+Bei mir manchmal, bei mir manchmal.
+Es ist sehr faszinierend, wenn ich das bei Studierenden sehe, wie die Ausgabe da manchmal aussieht.
+Ich habe da auch nie nach gefragt, also mach das einfach.
+Das wird mir persönlich auch gefallen.
+Ja, wie gesagt, das fällt einem auf, wenn man mal Chat-GPTs von anderen Leuten sieht, wie unterschiedlich die Kommunikationsform ist.
+Aber mir war jetzt, glaube ich, auch nur wieder der Haken, oder?
+Genau, genau.
+Aber, also man hat ja auch die, es gibt ja diesen offensichtlichen Speicher, wo Informationen übereingespeichert werden, also dieses Memory, was geupdatet wird.
+Ich habe auch häufig das Gefühl, dass man nicht alles nur damit erklären kann.
+Ja.
+
+
+
+
+
+
+Also, selbst wenn man das außer Acht lässt, dann...
+Sagen halt ganz viele Leute, dass die halt alles deaktiviert haben und trotzdem halt zu sehr Informationen auf sie zugeschnitten haben.
+Ich habe jetzt mal weitergemacht, das war falsch, ja?
+Das ist okay.
+Also, ich denke, die meisten sind sich einig, dass das System, wenn man Not-Chat-GPT benutzt, nicht wirklich ausreichend war.
+Ähm...
+Es war halt weder überzeugend noch vertrauenswürdig, wirklich.
+Und, ähm...
+Genau, und gleich ist halt noch die Frage, gehen wir ja gleich nochmal genau darauf ein, gehen wir halt in eine Diskussion rein.
+Ähm, dass wir jetzt erstmal zu Beginn, sag ich mal, dass wir einmal so einen großen Überblick haben, dass wir halt schnell sagen, dass, so wie es jetzt ist, dass es nun nicht so bleiben kann.
+Darf ich noch einmal ganz kurz was genau zu der Fragestellung sprachen?
+Weil, es ist die Fragestellung, es wurde ja schon gezeigt, dass das funktioniert.
+Da haben das ja Leute wahrscheinlich mit Chat-GPT gemacht, oder?
+Genau.
+Also, dieser Ansatz, der wurde ja schon gemacht.
+Genau.
+Für dich geht es jetzt darum, ob du ein Interface, das sozusagen noch besser macht.
+Genau, wie wir es am besten nutzen können, ob wir es vielleicht wirklich für den Allgemeinnutzer benutzen, ob das sinnvoll ist, ob man es lieber für Experten macht, damit die halt einfach noch ein gewisses Interesse haben.
+Oder halt einfach noch ein gewisses Hilfstool an die Hand zu kommen, das es vielleicht einfach am Anfang oder an gewissen Schnittstellen schneller macht.
+Oder wie wir halt auch dieses Interface aufbauen könnten, damit es halt diese gewissen Mechanismen halt hat, damit es hilft.
+Also, wir wollen jetzt wirklich darauf eingehen, wie genau wir dieses KI-gestützte Threadmodeling-Tool am effektivsten und am sinnvollsten bauen und nutzen können.
+Okay, und das war in dem anderen Paper ja nicht drin.
+Also, die haben das dann ja auch irgendwie schon sinnvoll eingesetzt, oder nicht?
+Das ist halt etwas, was ich mich nur gefragt habe.
+Ja genau, in den Studien haben die es aber mehr vergleichsweise eingesetzt, also mehr als Experiment, um zu schauen, welche Gruppen zum Beispiel funktionieren besser, welche weniger.
+Da haben sie halt nicht geschaut, wie kann man es effizienter machen, sondern einfach, ob es funktioniert.
+Ja.
+Wie hat es funktioniert und wie viel hat es im Vergleich zu anderen funktioniert.
+Und da wurde ja auch oft gezeigt, dass die KI auch Probleme mit kontextspezifischen Situationen hat, dass es ohne Expertise auch zu viele Probleme hatte und auch, dass viele Bedrohungen, die gar nicht da sind, erkannt wurden.
+Und halt ohne gewisse Expertise haben die halt nicht nochmal drüber nachgeschaut, die haben die erste Antwort genommen und das war es halt.
+Also man hat halt auch gezeigt, dass es viele Grenzen gab, auch wenn es Zeit gespart hat.
+Manchmal hat es mehr Fehler rausgebracht, als es wahrscheinlich gezeigt hat.
+Also da hat man halt gefragt, ist es wirklich sinnvoll gewesen, die KI zu benutzen, auch wenn es Zeit gespart hat, hat es halt manchmal mehr Fehler rausgebracht, so ungefähr.
+Wenn ich nochmal was fragen darf.
+
+
+Ich habe mich gerade eben gefragt in der Prompt.
+Da ging es ja zuerst, so wie ich es verstanden habe, in erster Linie um DFDs und Stride als Bedrohungsmodell, was auf der Seite auch Sinn ergibt.
+Damit können wir ja alles eigentlich abdecken.
+Dann der Sprung aber zu SQL Injections, die für mich jetzt erstmal sehr implementierungsspezifisch sind.
+Da habe ich mich dann so ein bisschen gefragt, was ist eigentlich das Ziel der Analyse?
+Geht es da jetzt um architekturelle Probleme eher?
+Oder geht es da um implementierungsspezifische?
+Also mir ist es jetzt nicht negativ aufgefallen, andersherum formuliert.
+Mir ist es nicht negativ aufgefallen, dass JetGPT das gar nicht erwähnt hatte, weil das erstmal auf einer ganzen Ebene eigentlich passiert ist, diese Bedrohungsanalyse.
+Genau, also da wollte ich noch so generell aufzeigen, dass JetGPT von vornherein nicht nochmal sagt, von wegen, dass diese Analyse, die er gegeben hat, nur für spezifisch Sachen möglich ist.
+Sachen wirklich hilft, beziehungsweise er ist ja in Australien eingegangen, als er hier
+gemacht hat, was ja mehr oder weniger ok war. Ich wollte halt mit dem nochmal darauf eingehen,
+dass es halt auch bestimmte Drohungen gibt, die darauf eigentlich wichtig sein könnten,
+weil er das halt noch umgeht. Für mich persönlich wäre es vielleicht wichtig gewesen, das einmal
+zu erwähnen, nicht dass er da einfach, also nicht das im Prinzip ist, sondern dass einfach
+nochmal gesagt bekommt, dass man halt gewisse Sicherheitslücken auch drumherum hat und
+auf die man achten muss. Vielleicht. Also einfach nochmal als Anregung, dass er halt
+nicht jede kleine Drohung aufzeigen kann, weil das einfach zu viel wäre aber auch...
+Aber du hast ja auch nach was anderem gefragt, das ist ja die Sache.
+Ja, stimmt.
+Du hast nach anderen Bedrohungen gefragt und dann erzählt er ja auch nicht, ja, die
+Server muss doppelt gesichert in einem Raum stehen oder irgendwie sowas. Also es ist
+ja klar, dass wenn du da die eine Art von Dataflow fragst, also...
+Also ich glaube, die eigentliche Frage ist, wer ist die Zielgruppe von dieser Analyse?
+Sind das jetzt vielleicht eher Software-Architekten oder sind das vielleicht Menschen, die die
+Software dann letztendlich implementieren?
+Genau, das ist halt ein bisschen die Frage gleich noch. Also, wir haben weit geschaut
+an sich.
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------
+
+Die KI hat machen können, es soll ja an sich helfen, dabei Sicherheitsbedrohungen
+mit dem Threat modeling herauszufinden und die dann vorher schon zu identifizieren.
+Die Frage ist halt, ob wir es halt nur für die Expertise, also für IT Security benutzen,
+das heißt, die benutzen es als Hilfstool oder halt für Programmierer, die es dann halt
+selbstständig dann irgendwann machen, die halt nicht so viel Expertise haben.
+Das ist halt die Frage, für was ist es sinnvoll, wo macht es mehr Sinn, wo kann es besser
+helfen.
+
+Wir versuchen halt den besten Nutzen sozusagen einfach daraus zu ziehen, mit dem spezifischen
+Bereich, mit den spezifischen Motoren sozusagen.
+
+-----------------------------------------------------
+
+_ Ich denke mal, an der Stelle, es ist schwierig, glaube ich, jetzt eine allgemeine Aussage
+da zu treffen.
+Wenn ich mir die Antwort...
+Also das erste, da soll die grüne Wiese stehen.
+Trotz KI ist die Vorvorstellung nicht so gut.
+
+_ Also wir haben jetzt gerade ein DFD gehabt, wo wir quasi auf der grünen Wiese starten.
+Im Prinzip hat Chat GBT das gesagt, was, ich weiß nicht, Dylan 2008 schon gesagt
+hat, DFDs sind nicht ausreichend, weil dort stehen keine Sicherheitsmaßnahmen drin.
+Und genau da ist ja auch Chez Chiquiti gerade die ganze Zeit drauf, immer wieder darauf
+eingegangen, hey, das könnte sein, aber weiß ich nicht, weil ich sehe nicht, ob da was
+implementiert ist.
+
+_ Da wäre für mich eher auch nochmal umgekehrt interessant für Chat GBT die Frage,
+wie sollten wir es denn modellieren, damit du das verstehst?
+Weil das ist ja auch nach wie vor eigentlich ein ungelöstes, was nicht ungelöstes Problem,
+aber so ein Problem, was wir in der manuellen Analyse diskutieren.
+Wir haben Ansätze, die irgendwie die DFDs erweitern.
+Wir haben Ansätze, die arbeiten auf ontologiebasierten Systemen.
+Wir haben noch andere Ansätze.
+Sprich...
+Also was wäre da eigentlich die richtige Eingabe überhaupt für Chat GBT?
+
+_ Ich habe vorhin erwähnt, ich habe Chez Chiquiti selber mal gefragt, bist du gut geeignet,
+um sowas zu machen?
+Und er hat gesagt, großes Problem ist, DFDs sind Bilder.
+Und Bilder kann ich nicht gut verstehen.
+Insofern wäre die Frage, ist es eigentlich sinniger, vielleicht das als JSON-Format oder
+so einzugeben, damit Chez Chiquiti überhaupt die Information besser greifen kann.
+Wobei vielleicht...
+
+---------------------------------------
+Also Bilder an sich...
+Es kann das solide...
+Das ist nicht die Frage, nur die ganzen Feinheiten rauszuklamüsern,
+weil er muss ja die Texte verstehen, die dort stehen und so weiter und so fort.
+Das sind ja viele Verarbeitungsschritte.
+------------------------------------
+
+_ Und in jeder dieser Pipeline-Schritte können Fehler entstehen.
+Da ist, denke ich mal, eine systematische Eingabe in Form von solchen Dingen eindeutig sinnvoller.
+Zurück zu der Frage, für wen ist das gedacht?
+Ich habe mir hier aufgeschrieben,
+die Ausgabe ist sehr, sehr detailliert.
+Und wenn wir einen Nicht-Security-Experten haben, wird der von dem Ding völlig erschlagen.
+Weil Security ist leider an der Stelle so ein Alles-oder-Nichts-Ding.
+Du musst die Transportverschützung haben, du musst das Session-Token haben, du musst
+die Authentifizierung haben, du musst die Autorisierung haben.
+Wenn das jemand ist, glaube ich, der gar keine Vorbildung hat in dem Bereich, dann ist das
+auf einmal so viel zu viel.
+Ich glaube nicht, dass das unmöglich ist.
+Aber da ist ja der Anspruch eine ganz andere.
+Weil da müssen wir ja hingehen und sagen, okay, das System muss auch schrittweise erklären.
+Da bist du so ein bisschen reingegangen mit deinen Nachfragen.
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+_ Auch ist die Frage Security-Experte, wenn man sich an die richtet, die hätten wahrscheinlich
+da andere Fragen. Und da an der Stelle ja auch immer die Kontextfrage, das war jetzt sehr allgemeine Aussagen im
+Sinne von.
+Grüne Wiese, wir haben beliebiges System.
+Wenn du Richtung Entwickler gehst, glaube ich, dass die viel mehr wissen wollen, mit
+welchem Framework kann ich denn was machen, was gibt es denn an Bibliotheken, die mich
+dabei unterstützen.
+
+
+Also eine andere Ebene.
+Die Antworten, die er geliefert hat, waren eher auf der Architektur-Ebene zu verorten,
+im Sinne von, du brauchst diese Eigenschaft, du brauchst diese Eigenschaft, das musst du
+umsetzen.
+Entwickler sind eher bei der Frage, wie kann ich das umsetzen.
+Was hatte ich dazu geschrieben?
+
+_Mehr Beschreibung vom Kontext, wenn man jetzt ChatGPT mehr nochmal beschreibt, worum geht
+es hier eigentlich, was macht die App, was kann sie und du bist, du gibst jetzt Tipps
+dem Entwickler oder dem Sicherheitsexperten, achte darauf, besonders technische Details
+oder wenn man einfach mehr schreibt, mehr Bild schreibt, dann wird man da wahrscheinlich
+eine spezifischere Angaben kriegen.
+
+_Und trotzdem könnte man sich ja auch überlegen, wenn man es halt möchte, nicht nur einen
+JSON als Input zu haben, sondern auch einen JSON als Output zu haben, was man dann z.B.
+prozesst, dass man halt sagt, okay, gib mir das halt für diese verschiedenen Punkte,
+gib es mir halt als JSON und dann kann man halt selber gucken, wie lang ist es, wie weit
+will ich es präsentieren und z.B. auch Sachen wieder wegschmeißen, damit man dann halt
+z.B.
+nur so eine kleinere Sicht bekommt.
+Weil so meine Erfahrung mit ChatGPT oder mit anderen, also besonders mit ChatGPT ist,
+in der Länge mag es sich ungern beschränken lassen momentan, also muss man dann halt mit
+irgendwelchen Tipps oder Tools arbeiten, um das irgendwie dann hinzubekommen.
+
+_Was an der Stelle JSON-Alternative, wie die mir noch eingefällt, es gibt durchaus Ansätze
+bzw.
+Frameworks, die so CI-based Threat Modeling machen, die quasi das Datenflussdiagramm in
+Form von YAML-Dateien im Repository hinterlegen.
+Das wäre so eine andere Variante zu JSON.
+
+_Das hat so ein bisschen das Problem und das war auch so der Punkt, den ich jetzt bei der
+Geschichte hier hatte, die Direktion und die Analyse steht und fällt mit dem Datenflussdiagramm.
+
+_Und ich denke mal, da wäre es auch sehr, sehr wichtig in dem Sinne, eine Feedback-Schleife
+zu haben im Sinne von, dass das System sagt, hier an der Stelle, da fehlt mir halt die
+Information, kannst du das nachspezifizieren?
+Weil ansonsten kriegen wir diese false positive Raten, die extrem hoch sind, weil im DFD kann
+ich viele Dinge einfach so erstmal nicht sehen und entsprechend wird das ChatGPT im Westen
+mit dem besten Wissen und Gewissen alles raushauen, was es findet.
+
+Oder glaubt da zu sein.
+Und ich glaube, da wäre es, und das ist auch das, was normalerweise in manuellen Prozessen
+passiert ist, 
+
+_man fängt an mit einem Datenflussdiagramm oder mit einem System Architektur, dann spricht
+man mit den Experten und sagt, da könnte was sein und dann sagen sie, ja, aber da haben
+wir noch.
+Und dann wird nachspezifiziert und dann passieren Dinge.
+
+Und ich meine, das war jetzt vor kurzem.
+Da wird ein kleines Beispiel natürlich nicht so einfach machbar, sehe ich auch.
+
+
+
+
+
+----------------------------------------------------------------------------------
+
+_Aber ich glaube, an der Stelle ist das weniger so ein One-Shot-Approach, von wegen hier hast
+du das Datenflussdiagramm und produziere, sondern mehr so ein Dialog mit dem System.
+Zumindest ist das, was ich auch aus dem manuellen Prozess kenne.
+
+_Also was vielleicht auch beim Eingabeformat ein weiterer Vorteil wäre, wenn das textuell
+wäre, erstmal von vornherein ist es günstiger, wenn man die API verwendet.
+Sonst hast du den Extraschritt, dass du das Bild nochmal in Text übersetzen musst
+und dann als Eingabe verwenden musst.
+So kannst du das halt einfach direkt in die Prompt reintun, was wieder sehr günstig ist,
+wenn man die ChatGPT-API verwendet.
+
+_Ein weiterer Vorteil, wenn man das aber noch weiterdenkt, wenn man jetzt mal davon ausgeht,
+dass es Software-Architekten sind, die dieses System am Ende verwenden, wäre natürlich
+auch, dass man die Kanten zum Beispiel in dem Graphen durchnummerieren kann und dann
+spezifisch zum Beispiel Ausgaben generieren kann pro Kante und da sagen kann, auf dieser
+Kante zum Beispiel könnte Folgendes passieren.
+Oder das wäre eine Bedrohung.
+Und wenn man dann den Ansatz wieder aufgreift, dass es eben nicht auch ein System ist, was
+immer wieder verwendet wird, könnte man ja bestimmte Kanten noch abhaken und sagen, das
+haben wir aber schon.
+So, da haben wir diese Sicherheitsmaßnahme ergriffen.
+Und dann ChatGPT zum Beispiel auch darum bitten, dass es dann nicht das auch als abgehakt ansieht
+und dazu kein Outlook mehr generiert.
+Dass man das vielleicht eher für Architekten als Checkliste verwendet, dass man bestimmte
+Bedrohungsszenarien bedacht hat in der Architektur.
+Und dann diese Dinge wieder aufgreifen.
+Und die GFD ist eben als Austauschformat verwendet an dieser Stelle.
+
+Kannst du noch eine Ansätze finden?
+Als nächstes hätte ich einfach mal die Frage, ob überhaupt ein Gebrauch in so einem System
+besteht.
+Ob man das bei euch in der Arbeit überhaupt als Tool irgendwie brauchen könnte oder ob
+wir das eher als überflüssig definieren.
+Ich musste die erste Frage skippen, weil ich da überhaupt nicht so für mich keine...
+Was du auch ausprobieren kannst, bevor du das jetzt machst, also bevor du jetzt zum Beispiel
+irgendwie versuchst, mit einem Tool ein JSON-Modell zu machen, einfach mal ChatGPT fragen, wie
+ist dieses Bild interpretiert?
+Also ohne, dass du halt überhaupt dann schon gleich die Sicherheitsfrage dazu stellst.
+Einfach mal gucken, was würde dann rauskommen?
+Identifiziert er alle Kanten richtig?
+Kommt alles gut drauf?
+Das habe ich tatsächlich schon gemacht gehabt.
+Das war der erste Teil, wo wir das sehr gut beschreiben können.
+Zumindest beschreiben.
+Ja, okay.
+Und ich konnte halt auch in der Analyse, konnte man eigentlich gut sehen, dass er das mit
+dem Datenflow, mit dem Fallen hin und her eigentlich gut verstanden hat, weil er ja gezeigt hat,
+in diesem Datenflow von...
+Von Customer zum System hat er ja wirklich den Fall genommen, wo es ums Ordern geht.
+Dann hat er aber auch als zweites wieder genommen ein anderes.
+Also an sich hat er das Bild verstanden.
+Wie gesagt, das war ein sehr, ich habe extra ein sehr, sehr einfaches DfD benutzt, damit
+es halt irgendwie noch in eine Demo passt, das jetzt nicht allzu sehr plötzlich analysiert
+wird, weil es zu viel ist.
+Also er war mir bewusst, dass es ein sehr...
+Genau.
+Und dann hast du als Test mal Tumor hat 2023, 2022, nee, ist schon ein bisschen her.
+Die haben eine Studie gemacht mit Menschen zum Thema Threadmodeling und die haben im
+Kontext dessen eine ganze Liste von Datenflussdiagrammen, so als PNG, hochgeladen, die halt auch wirklich
+etwas komplexer sind, wo dann die Kanten auch sehr dicht beieinander laufen und solche
+Geschichten.
+Da wäre es, glaube ich, dann zumindest, wenn man diese Frage sich stellt, kann ChatGPT
+das im größeren System erkennen, dass man zumindest damit mal rangehen könnte.
+Ob du das jetzt für deine Arbeit machen musst, das ist noch eine andere Frage, aber zumindest
+so als Idee, da gibt es größere Datenbasis und 26 Datenflussdiagramme, mit denen man
+da arbeiten kann.
+Gut.
+Hier haben wir jetzt auch nochmal zum Beispiel in der Bibliothek Vorlagen von...
+Ja.
+Ja.
+Vorlagen von Forms und sowas gedacht, ob man das vielleicht sinnvoll ist, sowas einzurichten,
+gerade falls man das in die Richtung gehen möchte, wenn es vielleicht auch nicht mit
+Expertise kommt, aber selbst mit kann man ja schauen, dass man trotzdem schon gewisse
+Forms oder Vorlagen in Bibliotheken anlegt, die einfach dann auch dadurch Zeit sparen,
+dass man das nicht einhalten muss oder beziehungsweise, wenn man zum Beispiel das für Sicherheitsexperten
+und für den Developmentbereich machen möchte, dann könnte man auch in Bibliotheken auch
+jeweils anlegen, dass die halt unterschiedliche Sachen machen können, beziehungsweise
+auch der andere dann auch Zugriff auf die andere hat.
+Also, ich meine, so die Idee, die wir auch ein bisschen weiter besprochen, vielleicht.
+Wir hatten ja auch irgendwie über die Data-Json-Exploration, aber...
+Ja.
+...ein Punkt, wo man dann auch die Daten, die man dann auch in der Bibliothek verwendet,
+die man dann auch verwendet.
+Ja.
+Ja.
+Ja.
+Ja.
+Ja.
+Ja.
+Ja.
+Ja.
+Ja.
+Ja.
+Ja.
+Ja.
+Ja.
+Ja.
+Ja.
+
+
+_eigentlich in jeder, gehen wir davon aus, wir haben irgendeine Form von Spiralmodell oder wir haben
+irgendeine Form von agiles Vorgehen, dann passiert Threat Modeling kontinuierlich. Das heißt,
+ich muss irgendwo immer wieder die Möglichkeit haben zu sagen, das ist jetzt mein System und
+darauf möchte ich folgende Änderungen machen, wie schaut es dann aus, also dieses Delta herauszufinden.
+
+
+Genau, insofern irgendwie, sei es jetzt eine strukturierte Form, die man selber abspeichern
+kann, eventuell selber auch durch Tools werfen kann, die, sage ich jetzt mal, statisch arbeiten,
+also nicht LLM-basiert, sondern rein statisch, weil vielleicht hat man ein gewisses Wissen. Es
+gibt auch, wie gesagt, einige Tools, die sowas schon automatisieren für strukturierte Daten,
+aber es gibt auch, wie gesagt, einige Tools, die sowas schon automatisieren für strukturierte Daten,
+aber es gibt auch, wie gesagt, einige Tools, die sowas schon automatisieren für strukturierte Daten,
+und dass man sowas als Ergänzung mit reinnimmt, da hängt es wieder davon ab, wer macht das,
+zu welchem Zweck, der Architekt, um mit ChatGPT sich darüber zur Hand zu halten, was sind vielleicht
+potenzielle Gegenmaßnahmen, was könnte ich vielleicht noch mal besser modellieren,
+damit es verständlicher ist, keine Ahnung, aber dann auf der anderen Seite auch diese statischen
+Ansätze. 
+
+
+
+_Ist nicht so eine Gruppe von, also spannend sind doch auch so Leute, die halt vielleicht die
+selbstständig arbeiten, halt in kleineren Kontexten, also ich kenne das halt so.
+Genau, aber die sind halt diejenigen, also man hört das ja immer wieder von so kleinen Startups dann,
+also ich habe auch mal eine Firma gegründet und dann habe ich irgendwann noch mal,
+als ich dann SQL Injection verstanden habe, so praktisch geguckt, aber es war alles gut,
+aber so, also ich glaube gerade so, wenn man kleinere Firmen sind oder kleinere Entwickler,
+die halt vielleicht Freelancer sind oder so, da kommen solche Sachen, glaube ich, schon häufiger
+mal vor, wo man dann irgendwie überrascht ist, was eigentlich alles passieren könnte oder so.
+Habe ich auch schon erlebt.
+Das hört man ja auch immer wieder, diese Leute, die dann diese Corona-App gemacht hatten,
+die hatten doch auch dann irgend so einen riesen, irgendwie alles, na gut,
+die hat nicht, glaube ich, als Klartext oder so auf dem Server gespielt, die Passwörter sind ja...
+Genau, diese interaktive Chat-Konferenz, die wir halt beim JGPT, ist anscheinend schon recht sinnvoll.
+
+
+
+
+Da ist halt hier wohl gesagt, oder ist nur mit 3,7 jeweils ein Arbeitsfall,
+also ein Domain-spezifischer, beziehungsweise eine Formvorlage, Bibliothek, nicht ganz so von, also...
+Inwiefern...
+Ich würde gerne wissen, warum das jetzt nicht so wichtig ist, beziehungsweise ist das einfach nicht der Fokus,
+den Sie da legen würden, bei so einem Tool?
+Also ich hatte das Gefühl, da geht das schon wieder ein bisschen durcheinander,
+was ist eigentlich das Ziel des Systems und soll dieses ganze System jetzt von den tatsächlichen Prompts abstrahieren
+oder soll das eigentlich nur ein etwas besseres Interface für Chat-GPT sein?
+Das ist mir persönlich nicht ganz klar geworden, was jetzt eigentlich, oder wie ich mir dieses Interface letztendlich vorstellen kann.
+Und ich glaube, die Frage hängt so ein bisschen davon ab, nämlich wie das am Ende des Tages aussieht.
+
+
+
+_Ist es so etwas wie ein verbessertes Chat-GPT-Interface, dann wären Promptvorlagen vielleicht hilfreich.
+Vielleicht würden solche Promptvorlagen eben aber auch zu so einer Art Anchoring-Effekt führen,
+dass man dann vielleicht nur noch auf diese Blöcke sich beruft und eventuelle Bedrohungsszenarien ignoriert, die man sonst vielleicht gesehen hätte.
+
+_In dem Sinne, ist es so ein bisschen, erinnert mich das an der Stelle, du sagtest es vorhin, vielleicht hat man nicht alle Expertise,
+dass so ein typisches Problem eigentlich traditionell von Threat-Modeling, gar nicht von den LLMs,
+sondern jeder Security-Experte hat einen Bereich, wo er sich besonders gut auskennt.
+Eine Kollegin von mir, die macht viel Krypto, die wird nach Krypto-Problemen gucken.
+Carsten Sorg würde mehr nach Autorisierungstheben gucken, weil er da sehr, sage ich mal, gasiert ist und sich da mit viel auseinandergesetzt hat.
+Und da wäre aus meiner Sicht genau auch Vorteil, Nachteil von sowas, also Nachteil von vorgefertigten Prompts wäre halt an der Stelle, was du gerade sagtest, man fokussiert sich zu sehr. Auf der anderen Seite könnte es einem, das könnte wieder positiv sein, Leuten auch ermöglichen, sich Themen anzugucken, wo ich jetzt nicht der Experte drin bin,
+auch wenn ich mich mit Security auskenne, aber ich zum Thema Krypto, ich weiß so ungefähr, was an Krypto darf ich benutzen, was ist sinnvoll, was ist nicht sinnvoll,
+notfalls gucke ich beim BSI nach, aber tiefe Krypto-Details habe ich nicht.
+Das wäre zum Beispiel etwas, wo dann vorgefertigte Prompts eventuell mir helfen könnten, mein Verständnis von so einem System zu verbessern.
+
+_Ich meine, du warst mit einem Punkt wie Rötting.
+Genau, aber wir haben ja jetzt alle, ich meine, die Studie wurde ja die Tage hoch und runter zitiert auf allen Kanälen,
+Chachepitinozung macht das Gehirn faul und das ist jetzt die Problematik, wenn wir zu viel vorgeben,
+dann kommt man in so einen Automatismus und so einen Autopilot-Modus.
+Das System wird es schon machen.
+Da muss man natürlich dann aufpassen.
+
+
+Ich meine, das ist ja auch so.
+Ich meine, das ist ja auch so.
+Das ist natürlich, wenn man selber aktiv mit dem System und Ahnung hat, dann wird man wahrscheinlich sagen, ja, ich bin mir dessen bewusst und so weiter.
+Frage wieder, Zielpublik.
+Frage wieder, Zielpublik.
+
+
+_als nutzern in diese systeme das hat viel damit zu tun inwiefern wir fehler identifizieren und
+nicht relativ offensichtlich und je natürlich menschlicher sich das system gibt desto mehr
+vertrauen würde ich denke mal das ist relativ gut übertragbar hier oder kann man mal in die
+richtung gucken zumindest das wäre die eine geschichte 
+
+
+die andere geschichte ich würde
+ich mir auch vorstellen
+könnte ist das wieder an der stelle an wen richtet sich das dass man 
+
+_so eine art persönliches
+expertenprofil hinterlegen sollte wenn zum beispiel wir hatten karsten so haben wir eben
+schon genannt wenn dem was richtung autorisierung genannt wird da braucht er wahrscheinlich keine
+erklärung für sondern er wird darauf gucken und intuitiv sofort entscheiden können ist es ein
+problem oder ist es kein problem einfach weil er die thematik so gut beherrscht da wird es glaube
+ich wieder so viele
+erklärung eher ein bisschen negativ sich auswirken auf diese ganze thematik mit vertrauen und wie
+gerne sich sowas solche aspekte während wenn es ein thema ist wo ich mich eher nicht so gut aus
+kennen dann möchte ich vielleicht automatisch mehr erklärung wäre zumindest so was was ich erwarten
+
+
+würde
+hätte dafür gerne ein bisschen mehr beziehung dazu
+einfach the world
+eine konkrete sache
+das ist dieser hals
+hier
+ist
+aber
+hier
+das ist
+auszufinden, wo das vielleicht am sinnvollsten wäre, wo es vielleicht auch im Rahmen meiner
+Arbeit auch noch machbar ist, theoretisch das auch umzusetzen. Wenn ich jetzt zum Beispiel
+einen Mentor für Experten machen würde oder ein Expertenprofil anzulegen, ich glaube,
+das schon als Prototyp zu machen wäre ein bisschen viel für... Also ich kann mir vorstellen,
+dass das gerade wenn man in die Sicherheitsrichtung geht, wo man halt viele verschiedene Sachen
+hat, auch allein schon die Personen haben ja in ihrer Familie ja selbst immer so kleine
+Bereiche, daher wäre das glaube ich innerhalb von ein paar Monaten so als Prototyp umzusetzen
+und vielleicht nicht die... Also in dem Sinne, ich liefere Ideen, beziehungsweise ich nenne
+Ideen, das ist ja unser Vortrag.
+Wir müssen die Arbeit nicht machen, das heißt wir dürfen träumen. Und in dem Sinne war das so ein
+Gedanke, was würde ich erwarten, was würde ich für mich selber erwarten in der Nutzung und für mich
+wäre das so ein... 
+
+_Ich bin Security-Mensch, ich kenne mich damit aus, ich würde sowas eher als
+Beisitzer oder als zweiten Reviewer sehen im Sinne von, das macht man auch in der Realität häufig,
+dass man nicht sagt...
+Ich mache das alleine, das Security-System, sondern ich mache das mit jemandem zusammen und gucke gemeinsam drauf und zusammen
+entwickelt man dann so... Man challenged sich so ein bisschen. Wer findet noch den nächsten Fehler?
+
+
+Jemand gibt ein Stichwort, der andere denkt weiter. In dem Kontext würde ich das für mich jetzt zum Beispiel sehen.
+Das ist was ganz anderes, wenn man sagt, Richtung Entwickler zum Beispiel.
+Genau, wie gesagt, das war auch eine Diskussion. Und zwar ja, das war anregend. Genau, also das waren jetzt auch erstmal so die Fragen von den Kunden dazu.
+Ähm...
+Wenn ich jetzt rauskomme...
+Wenn ich jetzt rauskomme, muss ich sagen, dass das Vertrauen sehr wichtig ist, wo ich dann vor allem einen KI-Experten fragen würde,
+wie man vielleicht da am besten das umsetzen kann, dass die KI halt schon halt das Reasoning immer bekommt,
+beziehungsweise dass die KI halt wirklich dieses, was wir halt gesagt haben, immer erklärt, auch woher bestimmte Analysen und Vorschläge herbekommen.
+
+
+_Wie wäre es denn einfach, dass man das automatisch, wenn man zum Beispiel so sagt, 
+Chat verlaufen hat und dann kann man hier voreinstellen mit diesem Interface, dass man ein gewisses Vorfertigen bekommt,
+den der Schreiber aber nicht unbedingt sehen muss, dass er von vornherein sagt, du musst noch mal begründen,
+beziehungsweise was für einen Input müsste ich denn der KI am besten schreiben, dass ich dann am besten eine Antwort bekomme,
+wo die meisten denken würden, dass das ein Problem ist.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+_Denken würden, dass es vertrauenswürdig genug oder halbwegs vertrauensartig ist.
+Naja, also ich glaube wichtiger ist ja, also ich habe im Moment das Gefühl, Leute haben den Eindruck,
+wenn man halt nur richtig genug prompt, dann kriege ich schon ein richtiges Ergebnis und so ist es halt nicht.
+Es ist halt immer fehlerbehaftet und es bleibt auch fehlerbehaftet und ich sehe auch in der nächsten Zukunft nicht so,
+dass, also nur weil dann ChatGPT 5 kommt, dass das halt dann alles plötzlich weg ist.
+Das wird halt immer so suggeriert und ich glaube, das ist halt viel wichtiger zu sagen, nicht zu sagen,
+okay, wie kriege ich es hin, dass es halt fehlerfrei ist.
+
+_Sowas im Hintergrund, solche Prompts im Hintergrund zu schreiben, ist immer schlau so und dann nochmal das, was ich halt meinte,
+ich würde es mir halt immer, wenn ich es halt als Interface bauen würde, würde ich halt nicht den Text von ChatGPT 5,
+würde ich halt nicht den Text von ChatGPT 5 ausgeben lassen, sondern es halt nochmal parsen auf irgendeine Art und Weise,
+also dass man weiß, man kriegt es strukturiert wieder und wenn man es nicht strukturiert wiederbekommt,
+nochmal irgendwie eine Rückfrage zu stellen und es dann erst zu präsentieren,
+
+_aber wichtiger ist wahrscheinlich, dass man halt deutlich macht, was halt einfach auch die Probleme sind.
+Also ich glaube, wenn man das zum Beispiel,
+kombiniert mit Wissen, was man zum Beispiel in der Datenbank hat,
+also wenn man jetzt zum Beispiel irgendwie eine Datenbank anlegt, wo man jetzt sagt, für deine Arbeit ist es natürlich klein,
+aber man sagt, okay, zu diesen Angriffspunkten kenne ich halt schon das und weiß, was ich dazu ausgeben will oder sowas,
+dann kann ich denen halt irgendwie sagen, das sind halt verlässliche Informationen
+und dann habe ich halt noch die zusätzlichen Informationen vom LLM,
+aber man muss, glaube ich, eher nochmal den Nutzer dann, wenn dann, darauf hinweisen,
+das ist jetzt vielleicht diese Challenge für dich, das ist halt von LLMs generiert und kann fehlerhaft sein,
+aber was würdest du denn dazu denken, was geht da noch drüber hinaus oder sowas?
+
+Das würde ich, glaube ich, eher machen.
+
+_Was ich an der Stelle schon mal sehr positiv fand, war ja das in diesem Beispiel, was du am Anfang hattest,
+das ja auch da in der Ausgabe drin stand,
+das ist etwas, das vermute ich jetzt, weil ich das gar nicht richtig erkennen kann
+oder weil das nicht richtig darin repräsentiert ist,
+also dass man, dass das System selbst auch sagt, okay, wo sind meine Grenzen, ne?
+
+
+Ja.
+Und das ermöglicht mir natürlich wieder als Nutzer kritischer einzuordnen,
+die Antwort, die da kommt, wie stark kann ich der vertrauen?
+Da kommt es dann wieder in diesen Bereich rein, wenn dann ich irgendwas finde, wo das System das eben nicht angegeben hat,
+dann fängt das mit an.
+Dann fängt das Misstrauen an.
+Ja.
+Ich könnte mir auch vorstellen, dass man halt nochmal darauf eingeht,
+dass man zum Beispiel erst nur über dieses Datenflow-Diagramm spricht, ne?
+
+
+_Also, weil du ja gesagt hattest, dass man das zum Beispiel auch häufiger in dieser Kette dann noch benutzt,
+also auch nochmal zwei Wochen später, könnte man halt zum Beispiel im ersten Schritt sagen,
+okay, man lässt es halt in LLM einfach nur analysieren, was das halt ist,
+und fragt den Nutzer dann halt erstmal nach, wie weit die Sachen überhaupt stimmen
+und was er noch für zusätzlichen Infos geben kann zu diesem System,
+um es halt vielleicht besser zu verstehen, was ist denn schon programmiert und so.
+
+
+_Damit es halt auch noch mehr Input, also ich würde versuchen, den Nutzer sozusagen dazu zu bringen,
+so viel Input wie möglich zu geben, um den dann halt noch weiter zu verarbeiten.
+Und ich glaube, das ist ja eigentlich auch die größte Schwäche von diesen Chat-Interfaces,
+dass man halt irgendwie so sagt, jetzt haben wir was gebaut, das ist superintelligent,
+und jetzt machen wir was damit, so.
+
+
+_Und ich glaube, wenn ich dann so ein Interface da, was darauf zugreift, würde ich halt immer mir wünschen,
+dass das halt den Nutzer wieder mehr an die Hand nimmt und mehr sagt, okay, komm,
+hier brauche ich noch mehr Infos von dir.
+Gib mal noch das ein oder gib noch mal die Information ein und nicht am Ende wieder sagt,
+und dann habe ich ja ein Chat-Interface und mach was damit, so.
+
+_Genau, das wäre ja dann an der Stelle so dieses, wenn da so was drinsteht, es könnte sein,
+dass man da dann das System aktiv eigentlich nachfragen müsste, du, hast du da schon was implementiert,
+existiert da was, wenn ja was, dann eventuell auch Vorschläge macht, wie könnte man, wenn das so ist,
+mit in die Modellierung aufnehmen.
+Damit man halt das Modell, das DFD ist ja nur ein Modell einer Software, dass man das erweitern kann,
+um diese Information, nur damit man, ich glaube nicht, dass es, wie gesagt, so ein One-Shot ist,
+ich lade das einmal rein und das Ding nennt mir alles und fertig, sondern dass es halt eher so ein Prozessbegleiter sein muss,
+im Sinne von gemeinsam dieses Modell erstellen, gemeinsam die Probleme identifizieren und auch Verbesserung am Modell
+und halt an der Security am Ende.
+
+
+
+Zu beleuchten.
+Das ist eine sehr, sehr herausfordernde Arbeit.
+Aber in dem Bereich denke ich mal, wäre das ein Werkzeug, was wirklich für viele spannend und interessant wäre.
+Kennst du Streamlit?
+Solltest du benutzen, also machst du ein Chat-Interface mit Python in drei Zeilen Code, so.
+Also da musst du dir nicht so viele Sorgen machen über das Interface.
+Ja.
+Das ist wirklich schnell gestaltet.
+Streamlit heißt das.
+Benutzen die Leute heutzutage so für Machine Learning, Visualisierung und so.
+Und da hast du wirklich, Chat-Interface ist wirklich ganz schnell gemacht, aber halt auch andere Sachen,
+dass du dann halt irgendwelche Fotos dann hochladen kannst oder so zu dich.
+Und da kann ich dann auch so zum Beispiel, falls ich jetzt Bibliothek und so was brauche, Bibliothek und so was reinmachen und ich da auch.
+Genau.
+Ist halt reinpreisend sogar.
+Also du hast dann mit der Rundin-Seite endlich wenig zu tun.
+Also das ist wirklich sehr komfortabel für solche Prototypen-Sachen.
+Genau.
+Persönlich hätte ich noch einmal zum Schluss eine abschließende Frage, weil ich habe jetzt schon viel impfert.
+Ich muss mir später selbst entscheiden, was genau ich jetzt da mitnehmen möchte und was ich jetzt genau für einen Prototypen entwickeln möchte.
+Aber so von jedem von euch kann ich noch einmal richtig zuhören.
+Also was wäre für euch das wichtigste Feature, wenn ich das jetzt nicht für den Allgemein-Nutzern haben möchte und auch jetzt nicht für den Experten, für sehr konkrete Expertisen,
+sondern halt wirklich als Hilfsmittel in halt, im Beobachtungssinn sozusagen, dass man das vielleicht in beiden Domänen einhenzen könnte.
+Als Tools so im Prozess.
+Genau.
+Im Prozess zum Unterstützung.
+Also jetzt bei der Sicherheit und dann bei der Behandlung.
+Also was für Features wäre da auch für euch so am wichtigsten?
+Schwierig, glaube ich, auf ein Feature zu beschränken.
+
+
+_Aber wenn du in diese Richtung möchtest, es in beiden Domänen vielleicht irgendwo ein sinnvolles Tool zu haben,
+dann ist, glaube ich, dieses...
+Dass dein System, was du entwickelst, zusammen mit ChatGPT eher die Rolle des, sage ich jetzt mal, Experten einnimmt und jemanden da durchführt.
+Also dieses Entwickeln eines Datenplus-Diagramm aufmerksam machen auf bestimmte Problematiken,
+dann halt im Sinne von entweder Modell verbessern oder Maßnahmen planen.
+Dieses, sage ich jetzt mal, dieses Interaktive.
+Das ein wenig an die Hand nehmen.
+Das ist zumindest, wenn man jetzt in diese Richtung denkt, das ist kein Security- und Threatmodeling-Experte, glaube ich, das, was wichtig ist.
+Zu den meisten Themen wird man dann mit ChatGPT normal, sage ich mal, wenn es ein Entwickler ist, herausfinden können, wie mache ich eine Authentifizierung.
+Also ich glaube, das ist nicht das Wissen, was das System erklären muss.
+Also wie gesagt, da gibt es draußen genügend.
+Da gibt es draußen genügend Literatur zu.
+
+
+Ja, ja, genau.
+
+_s
+
+
+Ja, also, sonst wäre das, vielleicht sonst keiner ist mit einem Vorschlag oder anderen Ansatz da, kaum wäre das von mir.
+Ich bedanke mich für das Mitmachen und für die nette Diskussion.
+Viel Erfolg bei deiner Arbeit, Herr Piazzi.
+Ja.
+Vielen Dank.
+Auf jeden Fall ein spannendes Thema.

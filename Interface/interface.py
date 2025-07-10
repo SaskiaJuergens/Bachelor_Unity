@@ -1,4 +1,9 @@
 import streamlit as st 
+from llm_chain import load_normal_chain
+from langchain.memory import StreamlitChatMessageHistory
+
+def load_chain(chat_history):
+    return load_normal_chain(chat_history)
 
 def set_send_input():
     st.session_state.send_input = True
@@ -17,20 +22,24 @@ def main():
         st.session_state.send_input = False
         st.session_state.input_query = ""
 
+    chat_history = StreamlitChatMessageHistory(key="history")
+    llm_chain = load_chain(chat_history)
+
     user_input = st.text_input("Stelle eine Frage...", key="user_input", on_change=set_send_input)
     send_button = st.button("Senden", key="send_button")
 
     if send_button or st.session_state.send_input:   #Senden button betätigen
         if st.session_state.input_query != "":
 
-            llm_response = "Anwort der LLM"
+            #llm_response = "Anwort der LLM"
 
             with chat_container:
                 #st.chat_message("user").write(user_input)
                 st.chat_message("user").write(st.session_state.input_query)
+                llm_response = llm_chain.run(st.session_state.input_query)
                 #st.chat_message("llm").write(llm_response)
-                st.chat_message("ai").write("AI Antwort!")
-        
+                st.chat_message("ai").write(llm_response)
+                st.session_state.input_query = ""
 
 if __name__ == "__main__":
     main()

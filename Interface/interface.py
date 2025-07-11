@@ -49,7 +49,7 @@ def main():
             #llm_response = "Anwort der LLM"
             with chat_container:
                 #st.chat_message("user").write(st.session_state.input_query)
-                llm_response = llm_chain.run(st.session_state.input_query)
+                llm_response = llm_chain.run(st.session_state.input_query )
                 st.session_state.input_query = ""
 
     #loop over den bereits exestierenden Chatverlauf

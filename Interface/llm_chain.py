@@ -4,11 +4,12 @@ from langchain.chains.retrieval_qa.base import RetrievalQA
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain_community.embeddings import HuggingFaceInstructEmbeddings
 from langchain.memory import ConversationBufferWindowMemory
-from langchain.prompts import PromptTemplate
+from langchain.prompts import PromptTemplate, ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
 from langchain.llms import CTransformers
 from langchain.vectorstores import Chroma
 import chromadb
 import yaml
+
 
 with open("config.yaml", "r") as f:
     config = yaml.safe_load(f)
@@ -38,6 +39,7 @@ class chatChain:
         llm = create_llm(model_path=model_path, model_type=model_path)
         chat_prompt = create_prompt_from_template(memory_prompt_template)
         self.llm_chain = create_llm_chain(llm, chat_prompt, self.memory)
+
         
     def run(self, user_input):
         return self.llm_chain.run(human_input=user_input, history=self.memory.chat_memory.messages, stop="Human:")   #Human in "prompt_templates.py"

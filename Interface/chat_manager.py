@@ -1,5 +1,6 @@
 import json
 from langchain.schema.messages import HumanMessage, AIMessage #https://api.python.langchain.com/en/latest/messages/langchain_core.messages.human.HumanMessage.html
+from datetime import datetime
 
 #list comprehension 
 #creating a list of the messages from the chat
@@ -15,3 +16,6 @@ def load_chat_history_json(file_path):
         messages = [HumanMessage(**message) if message["type"] == "human" else AIMessage(**message) for message in json_data]
         return messages
     
+#session_state managment
+def get_timestamp():
+    return datetime.now().strftime("%Y_%m_%d_%H_%M_%S") #Year Month Day Hour Minute Second

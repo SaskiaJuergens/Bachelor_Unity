@@ -2,7 +2,7 @@ import streamlit as st
 from llm_chain import load_normal_chain
 from langchain.memory import StreamlitChatMessageHistory
 from chat_manager import save_chat_history_json, load_chat_history_json, get_timestamp
-#from json_file_management import upload_json_file
+from json_file_management import upload_json_file
 import yaml
 import os
 
@@ -65,8 +65,7 @@ def main():
     user_input = st.text_input("Stelle eine Frage...", key="user_input", on_change=set_send_input)
     
     # JSON-Upload und Verarbeitung
-    #json_raw, parsed_json, json_snippet = upload_json_file()
-    #uploaded_json = st.sidebar.file_uploader("Upload an audio file", type=["wav", "mp3", "ogg"])
+    json_raw, parsed_json = upload_json_file()
 
     send_button = st.button("Senden", key="send_button")
     if send_button or st.session_state.send_input:   #Senden button betätigen
@@ -74,9 +73,14 @@ def main():
 
             llm_chain = load_chain(chat_history)
 
-            #llm_response = "Anwort der LLM"
+            # Wenn JSON vorhanden ist, nimm json_raw, sonst nur die Frage
+            if json_raw:
+                llm_input = f"Berücksichtige die folgenden JSON-Daten für den Rest der Konversation:\n{json_raw}\n\nFrage: {st.session_state.input_query}"
+            else:
+                llm_input = st.session_state.input_query
+
             with chat_container:
-                llm_response = llm_chain.run(st.session_state.input_query )
+                llm_response = llm_chain.run(llm_input)
                 st.session_state.input_query = ""
 
     #loop over den bereits exestierenden Chatverlauf

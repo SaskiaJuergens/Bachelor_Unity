@@ -14,10 +14,10 @@ def upload_json_file():
             st.success("Datei erfolgreich hochgeladen.")
             
             # Rückgabe: sowohl originaler Text als auch strukturierte Daten
-            return json_raw, parsed_json#, json_snippet
+            return json_raw, parsed_json
 
         except Exception as e:
             st.error(f"Fehler beim Einlesen oder Parsen der Datei: {e}")
-            return None, None, None
+            return None, None
 
-    return None, None, None
+    return None, None

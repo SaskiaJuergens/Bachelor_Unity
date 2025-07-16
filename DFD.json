@@ -1,0 +1,65 @@
+{
+  "dfd": {
+    "name": "Sample DFD",
+    "processes": [
+      {
+        "id": "P1",
+        "name": "User Authentication",
+        "inputs": ["Login Request"],
+        "outputs": ["Authentication Result"]
+      },
+      {
+        "id": "P2",
+        "name": "Data Processing",
+        "inputs": ["User Data"],
+        "outputs": ["Processed Data"]
+      }
+    ],
+    "dataStores": [
+      {
+        "id": "DS1",
+        "name": "User Database",
+        "data": ["User Credentials", "User Profiles"]
+      }
+    ],
+    "externalEntities": [
+      {
+        "id": "E1",
+        "name": "User",
+        "interactions": ["Send Login Request", "Receive Authentication Result"]
+      }
+    ],
+    "dataFlows": [
+      {
+        "from": "E1",
+        "to": "P1",
+        "data": "Login Request"
+      },
+      {
+        "from": "P1",
+        "to": "DS1",
+        "data": "User Credentials"
+      },
+      {
+        "from": "DS1",
+        "to": "P1",
+        "data": "Authentication Result"
+      },
+      {
+        "from": "P1",
+        "to": "E1",
+        "data": "Authentication Result"
+      },
+      {
+        "from": "P1",
+        "to": "P2",
+        "data": "User Data"
+      },
+      {
+        "from": "P2",
+        "to": "E1",
+        "data": "Processed Data"
+      }
+    ]
+  }
+}

@@ -5,6 +5,7 @@ from chat_manager import save_chat_history_json, load_chat_history_json, get_tim
 from json_file_management import upload_json_file
 import yaml
 import os
+import re
 
 with open("config.yaml", "r") as f:
     config = yaml.safe_load(f)
@@ -27,7 +28,8 @@ def clear_input_field():
 def save_chat_history():
     if st.session_state.history != []:
         # user_level in die History speichern
-        if not any(msg.get("role") == "system" and "user_level" in msg.get("content", "") for msg in st.session_state.history):
+        #if not any(msg.get("role") == "system" and "user_level" in msg.get("content", "") for msg in st.session_state.history):
+        if not any(getattr(msg, "type", None) == "system" and "user_level" in getattr(msg, "content", "") for msg in st.session_state.history):
             st.session_state.history.insert(0, {
                 "role": "system",
                 "content": f"user_level={st.session_state.user_level}"
@@ -94,6 +96,50 @@ def build_user_level_instructions(user_level: int) -> str:
             "Unbekanntes Sicherheitslevel – bitte formuliere ausgewogen, weder zu technisch noch zu oberflächlich.\n"
         )
 
+def build_threat_analysis_prompt(json_raw: str, user_input: str, user_level: int) -> str:
+    # Erstellt die Zielgruppen-Erklärung basierend auf dem Level
+    user_level_instructions = build_user_level_instructions(user_level)
+
+    return f"""
+    {user_level_instructions}
+
+    The user provided the following Data Flow Diagram (in JSON format):
+    {json_raw}
+
+    Question: {user_input}
+
+    Your tasks:
+    1. Analyze the DFD above for potential security threats using the STRIDE model.
+    2. For each threat, include:
+       - Which element of the DFD it affects (e.g., node or edge ID)
+       - The STRIDE category
+       - A short explanation of the risk
+       - A recommendation for mitigation, appropriate to the user's knowledge level
+       - (Optional) An example CVE that illustrates a comparable real-world vulnerability
+
+    Output the STRIDE analysis as a structured JSON list. Example:
+    [
+      {{
+        "dfd_element": "Edge 2 (from Process A to Storage B)",
+        "stride_category": "Information Disclosure",
+        "description": "Sensitive data is transferred without encryption.",
+        "recommendation": "Use TLS to secure the data in transit.",
+        "example_cve": "CVE-2021-34527"
+      }}
+    ]
+
+    3. At the end, generate an updated version of the Data Flow Diagram in the following JSON format:
+    {{
+      "nodes": [
+        {{ "id": 1, "label": "User" }}
+      ],
+      "edges": [
+        {{ "from": 1, "to": 2, "label": "User Input" }}
+      ]
+    }}
+
+    Add the updated DFD JSON at the end of your answer."""
+
 
 def main():
     st.title("AI-powered Threat Modeling")
@@ -156,39 +202,65 @@ def main():
         if st.session_state.input_query != "":
 
             llm_chain = load_chain(chat_history)
+            #llm_chain = [{"role": m.role, "content": m.content} for m in chat_history.messages]
 
-            #user_level = st.session_state.user_level
-            user_level_instructions = build_user_level_instructions()
+
+            user_level_instructions = build_user_level_instructions(st.session_state.user_level)
+            threat_prompt = build_threat_analysis_prompt(json_raw, st.session_state.input_query, st.session_state.user_level)
+
+
             # Wenn JSON vorhanden ist, nimm json_raw, sonst nur die Frage
             if json_raw:
-                llm_input = f"""{user_level_instructions}
-
-                    Consider the following JSON data (e.g., a DFD): {json_raw}
-
-                    Question: {st.session_state.input_query}
-
-                    At the end, generate an updated Data Flow Diagram in the following JSON format:
-                    {{
-                    "nodes": [
-                        {{ "id": 1, "label": "User" }}
-                    ],
-                    "edges": [
-                        {{ "from": 1, "to": 2, "label": "User Input" }}
-                    ]
-                    }}
-
-                    Add the JSON at the end of your answer.
-                    """
+                llm_input = build_threat_analysis_prompt(json_raw=json_raw, user_input=st.session_state.input_query, user_level=st.session_state.user_level)
             
             else:
-                llm_input = f"""{user_level_instructions}
+                lm_input = f"""{build_user_level_instructions(st.session_state.user_level)}
+                    Question: {st.session_state.input_query}"""
 
-                    Frage: {st.session_state.input_query}
-                    """
 
             with chat_container:
                 llm_response = llm_chain.run(llm_input)
+                #llm_response = ask_gpt35(llm_input, llm_chain, system_prompt=memory_prompt_template)
                 st.session_state.input_query = ""
+
+                json_match = re.search(r"\{[\s\S]*?\}", llm_response)
+
+                if json_match:
+                    answer_text = llm_response[:json_match.start()].strip()
+                    json_output = json_match.group().strip()
+                if json_output:
+                    st.code(json_output, language="json")
+                else:
+                    answer_text = llm_response.strip()
+                    json_output = None
+
+            # Interaktive Dialog - LLM fragt den User
+            with st.expander("What would you like to do next?", expanded=True):
+                next_action = st.radio(
+                    "Please choose an option:",
+                    ["Ask a new question", "Extend the DFD", "Repeat the analysis", "Nothing"],
+                    key="next_action_selection"
+                )
+
+                if next_action == "Extend the DFD":
+                    st.info("Please describe the additional components or data flows to include in the updated DFD.")
+                    new_dfd_input = st.text_area("Additional DFD components or data flows:", key="dfd_extension_input")
+                    if st.button("Update DFD"):
+                        st.session_state.input_query = f"Please extend the DFD with the following information: {new_dfd_input}"
+                        st.session_state.send_input = True
+
+                elif next_action == "Repeat the analysis":
+                    st.session_state.input_query = "Please repeat the threat analysis based on the current DFD."
+                    st.session_state.send_input = True
+
+                elif next_action == "Ask a new question":
+                    st.info("You can ask your next question in the input field above.")
+
+                elif next_action == "Nothing":
+                    st.success("Alright. You can continue later at any time.")
+
+
+
 
     #loop over den bereits exestierenden Chatverlauf
     if chat_history.messages != []:

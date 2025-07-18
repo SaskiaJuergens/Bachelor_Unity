@@ -1,5 +1,7 @@
 import streamlit as st 
 from llm_chain import load_normal_chain
+from API_key import ask_gpt35, load_dotenv
+from prompt_templates import memory_prompt_template
 from langchain.memory import StreamlitChatMessageHistory
 from chat_manager import save_chat_history_json, load_chat_history_json, get_timestamp
 from json_file_management import upload_json_file
@@ -208,13 +210,13 @@ def main():
             user_level_instructions = build_user_level_instructions(st.session_state.user_level)
             threat_prompt = build_threat_analysis_prompt(json_raw, st.session_state.input_query, st.session_state.user_level)
 
-
+            llm_input = ""
             # Wenn JSON vorhanden ist, nimm json_raw, sonst nur die Frage
             if json_raw:
                 llm_input = build_threat_analysis_prompt(json_raw=json_raw, user_input=st.session_state.input_query, user_level=st.session_state.user_level)
             
             else:
-                lm_input = f"""{build_user_level_instructions(st.session_state.user_level)}
+                llm_input = f"""{build_user_level_instructions(st.session_state.user_level)}
                     Question: {st.session_state.input_query}"""
 
 
@@ -223,7 +225,9 @@ def main():
                 #llm_response = ask_gpt35(llm_input, llm_chain, system_prompt=memory_prompt_template)
                 st.session_state.input_query = ""
 
+                json_output = None 
                 json_match = re.search(r"\{[\s\S]*?\}", llm_response)
+
 
                 if json_match:
                     answer_text = llm_response[:json_match.start()].strip()

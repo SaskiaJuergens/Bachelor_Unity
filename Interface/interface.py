@@ -27,6 +27,7 @@ def clear_input_field():
     st.session_state.user_input = "" #Input löschen  
 
 
+
 def save_chat_history():
     if st.session_state.history != []:
         # user_level in die History speichern
@@ -46,57 +47,58 @@ def save_chat_history():
 def build_user_level_instructions(user_level: int) -> str:
     if user_level == 1:
         return (
-            "Der Nutzer ist IT-Sicherheitsanfänger (Level 1).\n"
-            "- Gehe davon aus, dass grundlegende IT-Sicherheitskonzepte nicht bekannt sind.\n"
-            "- Erkläre alle Begriffe (wie z. B. „XSS“, „TLS“, „Datenfluss“) möglichst einfach und mit Alltagsvergleichen.\n"
-            "- Verwende einfache Sprache, kurze Sätze, und vermeide Fachjargon.\n"
-            "- Ergänze deine Antwort mit einem kurzen, eingebetteten IT-Security-Expertenprofil, "
-            "das erklärt, worauf in der Sicherheitsbewertung besonders geachtet wird (z. B. Vertraulichkeit, Integrität, Authentizität).\n"
-            "- Ziel ist es, den Nutzer nicht nur zu warnen, sondern ihm auch die Grundidee hinter der jeweiligen Bedrohung verständlich zu machen.\n"
+            "The user is a beginner in IT security (Level 1).\n"
+            "- Assume that basic IT security concepts are not known.\n"
+            "- Explain all terms (e.g., 'XSS', 'TLS', 'data flow') in simple language and using everyday analogies.\n"
+            "- Use plain language, short sentences, and avoid technical jargon.\n"
+            "- Add a brief embedded IT security expert profile to your response that explains what aspects are especially important in a security assessment (e.g., confidentiality, integrity, authenticity).\n"
+            "- The goal is not only to warn the user but also to help them understand the basic idea behind the specific threat.\n"
         )
 
     elif user_level == 2:
         return (
-            "Der Nutzer hat grundlegendes IT-Wissen, aber wenig spezifisches Wissen in IT-Security (Level 2).\n"
-            "- Gib einfache Erklärungen für alle sicherheitsrelevanten Begriffe und Verfahren.\n"
-            "- Binde Definitionen direkt in die Antwort ein (z. B. was eine SQL-Injection ist und wie sie funktioniert).\n"
-            "- Gib zu jeder gefundenen Bedrohung auch einen didaktisch aufbereiteten Hinweis, warum sie relevant ist und wie man sie grundsätzlich verhindern kann.\n"
-            "- Ergänze die Antwort mit einem IT-Security-Einstiegsprofil: Wichtige Schutzziele, typische Bedrohungstypen, Basismaßnahmen.\n"
+            "The user has basic IT knowledge, but little specific knowledge of IT security (Level 2).\n"
+            "- Provide simple explanations for all security-related terms and procedures.\n"
+            "- Integrate definitions directly into the response (e.g., what a SQL injection is and how it works).\n"
+            "- For each identified threat, include a didactically prepared note on why it is relevant and how it can be generally prevented.\n"
+            "- Add a beginner IT security profile: key protection goals, typical types of threats, basic measures.\n"
         )
 
     elif user_level == 3:
         return (
-            "Der Nutzer hat mittleres IT-Sicherheitswissen (Level 3).\n"
-            "- Er kennt grundlegende Sicherheitskonzepte, benötigt aber noch klare Orientierung.\n"
-            "- Gib praxisnahe, aber gut erklärte Hinweise zu Bedrohungen und Gegenmaßnahmen.\n"
-            "- Fachbegriffe dürfen verwendet werden, sollten aber gelegentlich kurz erläutert werden.\n"
-            "- Verweise gerne auf bekannte Frameworks (z. B. STRIDE, OWASP Top 10), aber ohne tiefes Detail.\n"
+            "The user has intermediate IT security knowledge (Level 3).\n"
+            "- They know basic security concepts but still need clear guidance.\n"
+            "- Provide practical but well-explained advice on threats and countermeasures.\n"
+            "- Technical terms can be used but should occasionally be briefly explained.\n"
+            "- Feel free to refer to known frameworks (e.g., STRIDE, OWASP Top 10), but without going into deep detail.\n"
         )
 
     elif user_level == 4:
         return (
-            "Der Nutzer ist Softwareentwickler oder Informatiker mit Umsetzungsverantwortung für IT-Security (Level 4).\n"
-            "- Konzentriere dich auf konkrete Umsetzungstipps und Best Practices.\n"
-            "- Liefere Empfehlungen zu Sicherheitsframeworks, Bibliotheken oder Tools (z. B. OWASP Dependency-Check, CSP, OAuth2).\n"
-            "- Verzichte auf grundlegende Erklärungen – setze voraus, dass Konzepte wie XSS oder CSRF bekannt sind.\n"
-            "- Strukturierte Bedrohungsklassifikationen (z. B. STRIDE oder LINDDUN) sind willkommen.\n"
-            "- Vorschläge sollten handlungsorientiert und technisch präzise sein.\n"
+            "The user is a software developer or computer scientist with implementation responsibility for IT security (Level 4).\n"
+            "- Focus on concrete implementation tips and best practices.\n"
+            "- Provide recommendations on security frameworks, libraries, or tools (e.g., OWASP Dependency-Check, CSP, OAuth2).\n"
+            "- Skip basic explanations – assume that concepts like XSS or CSRF are already known.\n"
+            "- Structured threat classifications (e.g., STRIDE or LINDDUN) are welcome.\n"
+            "- Suggestions should be action-oriented and technically precise.\n"
         )
 
     elif user_level == 5:
         return (
-            "Der Nutzer ist IT-Security-Experte (Level 5).\n"
-            "- Vermeide didaktische oder vereinfachte Erklärungen.\n"
-            "- Konzentriere dich auf relevante Bedrohungen, Edge-Cases und tiefergehende Analysen.\n"
-            "- Gib eher knappe Hinweise, z. B. auf ungewöhnliche Bedrohungsvektoren oder Architekturprobleme.\n"
-            "- Du kannst davon ausgehen, dass der Nutzer STRIDE, CIA, Angriffsvektoren und Security Patterns kennt.\n"
-            "- Optional: Wecke Diskussion oder Konfrontation durch kritische Rückfragen (Challenge-Partner-Rolle).\n"
+            "The user is an IT security expert (Level 5).\n"
+            "- Avoid didactic or simplified explanations.\n"
+            "- Focus on relevant threats, edge cases, and in-depth analyses.\n"
+            "- Provide concise notes, e.g., on unusual threat vectors or architectural issues.\n"
+            "- You can assume the user is familiar with STRIDE, CIA, attack vectors, and security patterns.\n"
+            "- The user does not need basic info, term definitions, or overly detailed explanations.\n"
+            "- Optional: Spark discussion or confrontation through critical questions (challenge partner role).\n"
         )
 
     else:
         return (
-            "Unbekanntes Sicherheitslevel – bitte formuliere ausgewogen, weder zu technisch noch zu oberflächlich.\n"
+            "Unknown security level – please provide a balanced explanation, neither too technical nor too superficial.\n"
         )
+
 
 def build_threat_analysis_prompt(json_raw: str, user_input: str, user_level: int) -> str:
     # Erstellt die Zielgruppen-Erklärung basierend auf dem Level
@@ -182,9 +184,13 @@ def main():
         st.session_state.history = load_chat_history_json(config["chat_history_path"] + st.session_state.session_key)
         # user_level aus gespeicherter system message extrahieren
         for msg in st.session_state.history:
-            if msg.get("role") == "system" and "user_level=" in msg.get("content", ""):
+            #if msg.get("role") == "system" and "user_level=" in msg.get("content", ""):
+            if hasattr(msg, "type") and msg.type == "system" and hasattr(msg, "content") and "user_level=" in msg.content:
+
                 try:
-                    st.session_state.user_level = int(msg["content"].split("user_level=")[-1].strip())
+                    #st.session_state.user_level = int(msg["content"].split("user_level=")[-1].strip())
+                    st.session_state.user_level = int(msg.content.split("user_level=")[-1].strip())
+
                     break
                 except:
                     st.session_state.user_level = 3  # fallback
@@ -272,6 +278,7 @@ def main():
             st.write("Chat history:")
             for message in chat_history.messages:
                 st.chat_message(message.type).write(message.content)
+
 
     
     #chat in session speichern

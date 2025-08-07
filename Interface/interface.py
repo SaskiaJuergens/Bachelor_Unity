@@ -1,16 +1,20 @@
 import streamlit as st 
-from llm_chain import load_normal_chain
-from API_key import ask_gpt35, load_dotenv
+from llm_chain import load_normal_chain, ask_gpt35, load_dotenv
+from langchain.schema import HumanMessage, AIMessage
 from prompt_templates import memory_prompt_template
 from langchain.memory import StreamlitChatMessageHistory
-from chat_manager import save_chat_history_json, load_chat_history_json, get_timestamp
-from json_file_management import upload_json_file
+from chat_manager import save_chat_history_json, load_chat_history_json, get_timestamp, next_prompt_recommendation
+from json_file_management import upload_json_file,  number_dfd_flows, extract_json_from_response, show_dfd_table, is_valid_json, check_dfd_completeness
 import yaml
 import os
+import json
 import re
 
-with open("config.yaml", "r") as f:
-    config = yaml.safe_load(f)
+config = {
+    "openai_api_key": "",
+    "chat_history_path": "chat_session/"
+}
+
 
 def load_chain(chat_history):
     return load_normal_chain(chat_history)
@@ -31,7 +35,6 @@ def clear_input_field():
 def save_chat_history():
     if st.session_state.history != []:
         # user_level in die History speichern
-        #if not any(msg.get("role") == "system" and "user_level" in msg.get("content", "") for msg in st.session_state.history):
         if not any(getattr(msg, "type", None) == "system" and "user_level" in getattr(msg, "content", "") for msg in st.session_state.history):
             st.session_state.history.insert(0, {
                 "role": "system",
@@ -43,6 +46,7 @@ def save_chat_history():
             save_chat_history_json(st.session_state.history, os.path.join(config["chat_history_path"] + st.session_state.new_session_key))
         else:
             save_chat_history_json(st.session_state.history, os.path.join(config["chat_history_path"] + st.session_state.session_key))
+
 
 def build_user_level_instructions(user_level: int) -> str:
     if user_level == 1:
@@ -71,6 +75,9 @@ def build_user_level_instructions(user_level: int) -> str:
             "- Provide practical but well-explained advice on threats and countermeasures.\n"
             "- Technical terms can be used but should occasionally be briefly explained.\n"
             "- Feel free to refer to known frameworks (e.g., STRIDE, OWASP Top 10), but without going into deep detail.\n"
+            "- Please explain technical terms briefly when used, and prefer common terms over abbreviations.\n"
+            "- Avoid overly technical descriptions like 'MACs', 'PKI', or 'OAuth' unless you explain them in simple language."
+        
         )
 
     elif user_level == 4:
@@ -81,6 +88,11 @@ def build_user_level_instructions(user_level: int) -> str:
             "- Skip basic explanations – assume that concepts like XSS or CSRF are already known.\n"
             "- Structured threat classifications (e.g., STRIDE or LINDDUN) are welcome.\n"
             "- Suggestions should be action-oriented and technically precise.\n"
+            "- Output the STRIDE analysis as a structured JSON list. Example: \n" 
+            "- DFD-Element: Edge 2 (from Process A to Storage B),\n" 
+            "- STRIDE category: Information Disclosure,\n" 
+            "- Description: Sensitive data is transferred without encryption.,\n" 
+            "- Recommendation: Use TLS to secure the data in transit.\n"   
         )
 
     elif user_level == 5:
@@ -92,6 +104,11 @@ def build_user_level_instructions(user_level: int) -> str:
             "- You can assume the user is familiar with STRIDE, CIA, attack vectors, and security patterns.\n"
             "- The user does not need basic info, term definitions, or overly detailed explanations.\n"
             "- Optional: Spark discussion or confrontation through critical questions (challenge partner role).\n"
+            "- Output the STRIDE analysis as a structured JSON list. Example: \n" 
+            "- DFD-Element: Edge 2 (from Process A to Storage B),\n" 
+            "- STRIDE category: Information Disclosure,\n" 
+            "- Description: Sensitive data is transferred without encryption.,\n" 
+            "- Recommendation: Use TLS to secure the data in transit.\n" 
         )
 
     else:
@@ -103,46 +120,41 @@ def build_user_level_instructions(user_level: int) -> str:
 def build_threat_analysis_prompt(json_raw: str, user_input: str, user_level: int) -> str:
     # Erstellt die Zielgruppen-Erklärung basierend auf dem Level
     user_level_instructions = build_user_level_instructions(user_level)
+    # Falls der User nichts eingegeben hat -> Default-Frage 
+    if user_input.strip() == "":
+        user_input = "Please perform a STRIDE Threat Analysis if a DFD was provided."
+    if user_level >= 4:
+        output_instruction = "Output the STRIDE analysis as a structured JSON list."
+    else:
+        output_instruction = (
+            "Output the STRIDE analysis as a clear, well-formatted explanation in plain language, "
+            "using bullet points and short paragraphs rather than JSON."
+        )
 
     return f"""
     {user_level_instructions}
 
+    Question: {user_input}
+       
+    Your tasks:
+    1.Answer the question or fulfill the user's request for a IT-Security realted topic, but clearly indicate where information is missing or where, as an AI, 
+    you may encounter limitations or challenges — especially in context-specific or highly detailed tasks. 
+    Be transparent about your boundaries and provide the user with suggestions on what additional information is needed to deliver 
+    a more accurate or helpful response.
+
     The user provided the following Data Flow Diagram (in JSON format):
     {json_raw}
-
-    Question: {user_input}
-
-    Your tasks:
-    1. Analyze the DFD above for potential security threats using the STRIDE model.
-    2. For each threat, include:
+    2. If you do a STRIDE THreat Modeling - then for each threat, include:
        - Which element of the DFD it affects (e.g., node or edge ID)
        - The STRIDE category
        - A short explanation of the risk
        - A recommendation for mitigation, appropriate to the user's knowledge level
        - (Optional) An example CVE that illustrates a comparable real-world vulnerability
 
-    Output the STRIDE analysis as a structured JSON list. Example:
-    [
-      {{
-        "dfd_element": "Edge 2 (from Process A to Storage B)",
-        "stride_category": "Information Disclosure",
-        "description": "Sensitive data is transferred without encryption.",
-        "recommendation": "Use TLS to secure the data in transit.",
-        "example_cve": "CVE-2021-34527"
-      }}
-    ]
+    3. Output the STRIDE analysis as a structured JSON list suitable for the user knowledge Level.
 
-    3. At the end, generate an updated version of the Data Flow Diagram in the following JSON format:
-    {{
-      "nodes": [
-        {{ "id": 1, "label": "User" }}
-      ],
-      "edges": [
-        {{ "from": 1, "to": 2, "label": "User Input" }}
-      ]
-    }}
-
-    Add the updated DFD JSON at the end of your answer."""
+    If the Question isn't about a IT-Security realted topic, clearify, that you don't help in other matters than IT-Security.
+    """
 
 
 def main():
@@ -151,6 +163,8 @@ def main():
 
     chat_container = st.container()
     st.sidebar.title("Chat Session")
+
+    os.makedirs(config["chat_history_path"], exist_ok=True)
     chat_sessions = ["new session"] + os.listdir(config["chat_history_path"])    
 
 
@@ -164,6 +178,8 @@ def main():
     if st.session_state.session_key == "new session" and st.session_state.new_session_key != None:
         st.session_state.session_index_tracker = st.session_state.new_session_key
         st.session_state.new_session_key = None
+    if "input_query" not in st.session_state:
+        st.session_state.input_query = ""
 
     if "user_level" not in st.session_state:
         if st.session_state.session_key == "new session":
@@ -184,11 +200,9 @@ def main():
         st.session_state.history = load_chat_history_json(config["chat_history_path"] + st.session_state.session_key)
         # user_level aus gespeicherter system message extrahieren
         for msg in st.session_state.history:
-            #if msg.get("role") == "system" and "user_level=" in msg.get("content", ""):
             if hasattr(msg, "type") and msg.type == "system" and hasattr(msg, "content") and "user_level=" in msg.content:
 
                 try:
-                    #st.session_state.user_level = int(msg["content"].split("user_level=")[-1].strip())
                     st.session_state.user_level = int(msg.content.split("user_level=")[-1].strip())
 
                     break
@@ -201,73 +215,59 @@ def main():
     chat_history = StreamlitChatMessageHistory(key="history")
         
     user_input = st.text_input("Ask a question...", key="user_input", on_change=set_send_input)
-    
+
     # JSON-Upload und Verarbeitung
     json_raw, parsed_json = upload_json_file()
+    if parsed_json:
+        parsed_json = number_dfd_flows(parsed_json)
+        json_raw = json.dumps(parsed_json, indent=2)
 
     send_button = st.button("Send", key="send_button")
     if send_button or st.session_state.send_input:   #Senden button betätigen
-        if st.session_state.input_query != "":
+        llm_chain = load_chain(chat_history)
 
-            llm_chain = load_chain(chat_history)
-            #llm_chain = [{"role": m.role, "content": m.content} for m in chat_history.messages]
+        #if st.session_state.input_query != "":
+        user_query = st.session_state.input_query.strip()
+        if json_raw and user_query == "":
+            user_query = "Please perform a STRIDE Threat Analysis of the provided Data Flow Diagram (DFD)."
 
 
-            user_level_instructions = build_user_level_instructions(st.session_state.user_level)
-            threat_prompt = build_threat_analysis_prompt(json_raw, st.session_state.input_query, st.session_state.user_level)
+        user_level_instructions = build_user_level_instructions(st.session_state.user_level)
+        threat_prompt = build_threat_analysis_prompt(json_raw, st.session_state.input_query, st.session_state.user_level)
 
-            llm_input = ""
-            # Wenn JSON vorhanden ist, nimm json_raw, sonst nur die Frage
-            if json_raw:
-                llm_input = build_threat_analysis_prompt(json_raw=json_raw, user_input=st.session_state.input_query, user_level=st.session_state.user_level)
+        llm_input = ""
+        # Wenn JSON vorhanden ist, nimm json_raw, sonst nur die Frage
+        if json_raw:
+            llm_input = build_threat_analysis_prompt(json_raw=json_raw, user_input=st.session_state.input_query, user_level=st.session_state.user_level)
             
+        else:
+            llm_input = f"""{build_user_level_instructions(st.session_state.user_level)}
+                Question: {st.session_state.input_query}"""
+
+
+        with chat_container:
+            llm_response = llm_chain.run(llm_input) #LLM antowrtet
+
+            if not is_valid_json(llm_response):
+                st.warning("The answer doesn't contain a valid JSON.")
             else:
-                llm_input = f"""{build_user_level_instructions(st.session_state.user_level)}
-                    Question: {st.session_state.input_query}"""
+                parsed_json = json.loads(llm_response)
+                issues = check_dfd_completeness(parsed_json)
+                if issues:
+                    st.warning("Possible Problems with DFD:")
+                    for issue in issues:
+                        st.text(f"- {issue}")
+            st.session_state.input_query = ""
 
+            json_output, answer_text = extract_json_from_response(llm_response)
 
-            with chat_container:
-                llm_response = llm_chain.run(llm_input)
-                #llm_response = ask_gpt35(llm_input, llm_chain, system_prompt=memory_prompt_template)
-                st.session_state.input_query = ""
-
-                json_output = None 
-                json_match = re.search(r"\{[\s\S]*?\}", llm_response)
-
-
-                if json_match:
-                    answer_text = llm_response[:json_match.start()].strip()
-                    json_output = json_match.group().strip()
-                if json_output:
-                    st.code(json_output, language="json")
-                else:
-                    answer_text = llm_response.strip()
-                    json_output = None
-
-            # Interaktive Dialog - LLM fragt den User
-            with st.expander("What would you like to do next?", expanded=True):
-                next_action = st.radio(
-                    "Please choose an option:",
-                    ["Ask a new question", "Extend the DFD", "Repeat the analysis", "Nothing"],
-                    key="next_action_selection"
-                )
-
-                if next_action == "Extend the DFD":
-                    st.info("Please describe the additional components or data flows to include in the updated DFD.")
-                    new_dfd_input = st.text_area("Additional DFD components or data flows:", key="dfd_extension_input")
-                    if st.button("Update DFD"):
-                        st.session_state.input_query = f"Please extend the DFD with the following information: {new_dfd_input}"
-                        st.session_state.send_input = True
-
-                elif next_action == "Repeat the analysis":
-                    st.session_state.input_query = "Please repeat the threat analysis based on the current DFD."
-                    st.session_state.send_input = True
-
-                elif next_action == "Ask a new question":
-                    st.info("You can ask your next question in the input field above.")
-
-                elif next_action == "Nothing":
-                    st.success("Alright. You can continue later at any time.")
+            if json_output:
+                st.code(json.dumps(json_output, indent=2), language="json")
+                show_dfd_table(json_output)
+            else:
+                answer_text = llm_response.strip()
+                json_output = None
+                #st.write(answer_text)
 
 
 
@@ -280,9 +280,39 @@ def main():
                 st.chat_message(message.type).write(message.content)
 
 
+        # Interaktive Dialog - LLM fragt den User
+        option_lines, feedback_question = next_prompt_recommendation(chat_history, ask_gpt35, memory_prompt_template)
+
+        with st.expander("What do you wanna do next?", expanded=True):
+            next_action = st.radio(
+                feedback_question,
+                option_lines,
+                key="next_action_selection"
+            )
+
+            feedback = st.radio(
+                "Was this guidance helpful and sufficiently detailed?",
+                ["Yes", "No"],
+                key="feedback_selection"
+            )
+
+            if st.button("Next"):
+                if feedback == "No":
+                    st.session_state.input_query = f"Please answer the question more detailed: {chat_history.messages[-1].content}"
+                else:
+                    st.session_state.input_query = next_action
+
+                st.session_state.send_input = True
+                
+        if next_action:
+            # Setze die Auswahl als nächsten llm_input
+            st.session_state.input_query = next_action
+            st.session_state.send_input = True
+
     
     #chat in session speichern
     save_chat_history()
+
 
 
 if __name__ == "__main__":

@@ -1,3 +1,5 @@
+from langchain.prompts import SystemMessagePromptTemplate, HumanMessagePromptTemplate, ChatPromptTemplate
+
 memory_prompt_template = """<s>[INST] 
 You are an AI-powered assistant for collaborative threat modeling.
 
@@ -29,4 +31,7 @@ Your goal is to be a transparent, trustworthy assistant who empowers users — n
 
     Previous conversation: {history}
     Human: {human_input}
+    memory_prompt_template = ChatPromptTemplate.from_messages([
+    SystemMessagePromptTemplate.from_template(system_template),
+    HumanMessagePromptTemplate.from_template(human_template)
     AI: [INST] """

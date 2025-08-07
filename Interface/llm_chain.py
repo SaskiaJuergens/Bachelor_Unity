@@ -81,7 +81,7 @@ def ask_gpt35(user_input, chat_history, system_prompt=""):
                 role = "assistant"
             messages.append({"role": role, "content": msg.content})
         else:
-            print("Unknow message format:", msg)
+            print("Unknown message format:", msg)
 
     # Benutzer-Eingabe als letzter Schritt
     messages.append({"role": "user", "content": user_input})

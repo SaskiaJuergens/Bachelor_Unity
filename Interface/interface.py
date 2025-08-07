@@ -122,7 +122,7 @@ def build_threat_analysis_prompt(json_raw: str, user_input: str, user_level: int
     user_level_instructions = build_user_level_instructions(user_level)
     # Falls der User nichts eingegeben hat -> Default-Frage 
     if user_input.strip() == "":
-        user_input = "Please perform a STRIDE Threat Analysis if a DFD was provided."
+        user_input = "Please perform a STRIDE Threat Analysis based on the Data Flow Diagram (DFD) provided in a non-JSON format"
     if user_level >= 4:
         output_instruction = "Output the STRIDE analysis as a structured JSON list."
     else:
@@ -139,19 +139,19 @@ def build_threat_analysis_prompt(json_raw: str, user_input: str, user_level: int
     Your tasks:
     1.Answer the question or fulfill the user's request for a IT-Security realted topic, but clearly indicate where information is missing or where, as an AI, 
     you may encounter limitations or challenges — especially in context-specific or highly detailed tasks. 
-    Be transparent about your boundaries and provide the user with suggestions on what additional information is needed to deliver 
+    2. Be transparent about your boundaries and limitations for you as a AI and provide the user with suggestions on what additional information is needed to deliver 
     a more accurate or helpful response.
 
     The user provided the following Data Flow Diagram (in JSON format):
     {json_raw}
-    2. If you do a STRIDE THreat Modeling - then for each threat, include:
+    3. If you do a STRIDE THreat Modeling - then for each threat, include:
        - Which element of the DFD it affects (e.g., node or edge ID)
        - The STRIDE category
        - A short explanation of the risk
        - A recommendation for mitigation, appropriate to the user's knowledge level
        - (Optional) An example CVE that illustrates a comparable real-world vulnerability
 
-    3. Output the STRIDE analysis as a structured JSON list suitable for the user knowledge Level.
+    4. Output the STRIDE analysis as a structured JSON list suitable for the user knowledge Level.
 
     If the Question isn't about a IT-Security realted topic, clearify, that you don't help in other matters than IT-Security.
     """
@@ -248,15 +248,15 @@ def main():
         with chat_container:
             llm_response = llm_chain.run(llm_input) #LLM antowrtet
 
-            if not is_valid_json(llm_response):
-                st.warning("The answer doesn't contain a valid JSON.")
-            else:
-                parsed_json = json.loads(llm_response)
-                issues = check_dfd_completeness(parsed_json)
-                if issues:
-                    st.warning("Possible Problems with DFD:")
-                    for issue in issues:
-                        st.text(f"- {issue}")
+            # if not is_valid_json(llm_response):
+            #     st.warning("The answer doesn't contain a valid JSON.")
+            # else:
+            #     parsed_json = json.loads(llm_response)
+            #     issues = check_dfd_completeness(parsed_json)
+            #     if issues:
+            #         st.warning("Possible Problems with DFD:")
+            #         for issue in issues:
+            #             st.text(f"- {issue}")
             st.session_state.input_query = ""
 
             json_output, answer_text = extract_json_from_response(llm_response)
@@ -280,34 +280,34 @@ def main():
                 st.chat_message(message.type).write(message.content)
 
 
-        # Interaktive Dialog - LLM fragt den User
-        option_lines, feedback_question = next_prompt_recommendation(chat_history, ask_gpt35, memory_prompt_template)
+            # Interaktive Dialog - LLM fragt den User
+            option_lines, feedback_question = next_prompt_recommendation(chat_history, ask_gpt35, memory_prompt_template)
 
-        with st.expander("What do you wanna do next?", expanded=True):
-            next_action = st.radio(
-                feedback_question,
-                option_lines,
-                key="next_action_selection"
-            )
+            with st.expander("What do you wanna do next?", expanded=True):
+                next_action = st.radio(
+                    feedback_question,
+                    option_lines,
+                    key="next_action_selection"
+                )
 
-            feedback = st.radio(
-                "Was this guidance helpful and sufficiently detailed?",
-                ["Yes", "No"],
-                key="feedback_selection"
-            )
+                feedback = st.radio(
+                    "Was this guidance helpful and sufficiently detailed?",
+                    ["Yes", "No"],
+                    key="feedback_selection"
+                )
 
-            if st.button("Next"):
-                if feedback == "No":
-                    st.session_state.input_query = f"Please answer the question more detailed: {chat_history.messages[-1].content}"
-                else:
-                    st.session_state.input_query = next_action
+                if st.button("Next"):
+                    if feedback == "No":
+                        st.session_state.input_query = f"Please answer the question more detailed: {chat_history.messages[-1].content}"
+                    else:
+                        st.session_state.input_query = next_action
 
+                    st.session_state.send_input = True
+                    
+            if next_action:
+                # Setze die Auswahl als nächsten llm_input
+                st.session_state.input_query = next_action
                 st.session_state.send_input = True
-                
-        if next_action:
-            # Setze die Auswahl als nächsten llm_input
-            st.session_state.input_query = next_action
-            st.session_state.send_input = True
 
     
     #chat in session speichern

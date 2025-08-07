@@ -60,8 +60,7 @@ def next_prompt_recommendation(chat_history, ask_gpt35_func, system_prompt):
     4. Always create a list of 3-4 meaningful next steps the user can choose to continue the process, even if no additional information is needed. 
         Examples: "Ask a new question", "Extend the DFD", "Repeat the analysis", "Do nothing".
         Never leave this section empty.
-    5. At the end of the list, formulate a short yes/no question asking the user for feedback on the last response. For example: "Was the last answer helpful and sufficiently detailed?"  
-    6. Respond strictly in this format:
+    5. Respond strictly in this format:
         1. A numbered list (1., 2., 3., ...) of up to 4 next steps. Do not skip this.
         2. If there is missing context: write exactly ONE clear follow-up question. If none is needed, write "No follow-up question."
         Use exactly this order, no extra explanations, no bullet points other than the numbered list.       

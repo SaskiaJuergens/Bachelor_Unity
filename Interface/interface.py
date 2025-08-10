@@ -181,16 +181,36 @@ def main():
     if "input_query" not in st.session_state:
         st.session_state.input_query = ""
 
+    #####User Level######
+    def update_user_level():
+        st.session_state.user_level = st.session_state.slider_user_level
+
     if "user_level" not in st.session_state:
-        if st.session_state.session_key == "new session":
-            st.session_state.user_level = st.select_slider(
-                "Rate your IT security knowledge from 1 (Beginner) to 5 (Expert)",
-                options=[1, 2, 3, 4, 5],
-                value=3
-            )
-            st.markdown("---")
-        else:
-            st.session_state.user_level = 3  # Default fallback
+        st.session_state.user_level = None
+
+    if st.session_state.session_key == "new session":
+        st.select_slider(
+            "Rate your IT security knowledge from 1 (Beginner) to 5 (Expert)",
+            options=[1, 2, 3, 4, 5],
+            key="slider_user_level",
+            value=3,
+            on_change=update_user_level
+        )
+        if st.session_state.user_level is None:
+            st.session_state.user_level = 3  # Default
+    else:
+        # Bei bestehender Session aus History laden, falls noch nicht geladen
+        if st.session_state.user_level is None:
+            for msg in st.session_state.history:
+                if hasattr(msg, "type") and msg.type == "system" and hasattr(msg, "content") and "user_level=" in msg.content:
+                    try:
+                        st.session_state.user_level = int(msg.content.split("user_level=")[-1].strip())
+                        break
+                    except:
+                        st.session_state.user_level = 3  # Default
+
+
+
 
     index = chat_sessions.index(st.session_state.session_index_tracker)
     st.sidebar.selectbox("Choose a chat", chat_sessions, key="session_key", index=index, on_change=track_index)
@@ -231,18 +251,10 @@ def main():
         if json_raw and user_query == "":
             user_query = "Please perform a STRIDE Threat Analysis of the provided Data Flow Diagram (DFD)."
 
+        #user_level_instructions = build_user_level_instructions(st.session_state.user_level)
+        #threat_prompt = build_threat_analysis_prompt(json_raw, st.session_state.input_query, st.session_state.user_level)
 
-        user_level_instructions = build_user_level_instructions(st.session_state.user_level)
-        threat_prompt = build_threat_analysis_prompt(json_raw, st.session_state.input_query, st.session_state.user_level)
-
-        llm_input = ""
-        # Wenn JSON vorhanden ist, nimm json_raw, sonst nur die Frage
-        if json_raw:
-            llm_input = build_threat_analysis_prompt(json_raw=json_raw, user_input=st.session_state.input_query, user_level=st.session_state.user_level)
-            
-        else:
-            llm_input = f"""{build_user_level_instructions(st.session_state.user_level)}
-                Question: {st.session_state.input_query}"""
+        llm_input = build_threat_analysis_prompt(json_raw=json_raw, user_input=st.session_state.input_query, user_level=st.session_state.user_level)
 
 
         with chat_container:
@@ -279,35 +291,51 @@ def main():
             for message in chat_history.messages:
                 st.chat_message(message.type).write(message.content)
 
+            llm_response = ""
+            if llm_response:
+                chat_history.messages.append(AIMessage(content=llm_response))
+
 
             # Interaktive Dialog - LLM fragt den User
             option_lines, feedback_question = next_prompt_recommendation(chat_history, ask_gpt35, memory_prompt_template)
 
-            with st.expander("What do you wanna do next?", expanded=True):
-                next_action = st.radio(
-                    feedback_question,
-                    option_lines,
-                    key="next_action_selection"
-                )
+            # Meaningful next step nur, wenn nicht leer
+            if option_lines and any(opt.strip() for opt in option_lines):
+                with st.expander("What do you wanna do next?", expanded=True):
 
-                feedback = st.radio(
-                    "Was this guidance helpful and sufficiently detailed?",
-                    ["Yes", "No"],
-                    key="feedback_selection"
-                )
+                    # if f"next_action_selection_{len(option_lines)}" not in st.session_state:
+                    #     st.session_state[f"next_action_selection_{len(option_lines)}"] = None
 
-                if st.button("Next"):
-                    if feedback == "No":
-                        st.session_state.input_query = f"Please answer the question more detailed: {chat_history.messages[-1].content}"
-                    else:
-                        st.session_state.input_query = next_action
+                    next_action = st.radio(
+                        feedback_question,
+                        option_lines,
+                        key=f"next_action_selection_{len(option_lines)}",
+                        index=None
+                    )
 
-                    st.session_state.send_input = True
-                    
-            if next_action:
-                # Setze die Auswahl als nächsten llm_input
-                st.session_state.input_query = next_action
-                st.session_state.send_input = True
+                    # if f"feedback_selection{len(option_lines)}" not in st.session_state:
+                    #     st.session_state[f"feedback_selection{len(option_lines)}"] = None
+                    feedback = st.radio(
+                        "Was this guidance helpful and sufficiently detailed?",
+                        ["Yes", "No"],
+                        key=f"feedback_selection{len(chat_history.messages)}",
+                        index=None
+                    )
+
+                    if st.button("Next"):
+                        if next_action:
+                            if feedback == "No":
+                                st.session_state.input_query = (
+                                    "Answer more detailed for someone who has less IT-Security knowledge. "
+                                    f"Previous answer: {chat_history.messages[-1].content}"
+                                )
+                            else:
+                                st.session_state.input_query = (
+                                    "The last answer was satisfactory. Now please provide the user with additional ideas or practical tips on what steps they could or should take next."
+                                    f"Previous answer: {chat_history.messages[-1].content}"
+                                )
+                            st.session_state.send_input = True
+
 
     
     #chat in session speichern

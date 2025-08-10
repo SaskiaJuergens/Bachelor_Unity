@@ -58,12 +58,13 @@ def next_prompt_recommendation(chat_history, ask_gpt35_func, system_prompt):
     2. If such missing information exists, please formulate a clear and specific follow-up question for the user to answer, for example: "What has already been implemented?" or "Please describe the security measures of component X."  
     3. If you do not identify any missing information and everything seems sufficient, do not formulate a follow-up question.  
     4. Always create a list of 3-4 meaningful next steps the user can choose to continue the process, even if no additional information is needed. 
-        Examples: "Ask a new question", "Extend the DFD", "Repeat the analysis", "Do nothing".
         Never leave this section empty.
-    5. Respond strictly in this format:
-        1. A numbered list (1., 2., 3., ...) of up to 4 next steps. Do not skip this.
-        2. If there is missing context: write exactly ONE clear follow-up question. If none is needed, write "No follow-up question."
-        Use exactly this order, no extra explanations, no bullet points other than the numbered list.       
+    5. You must always strictly provide:
+    1. A follow-up question to keep the conversation going and if there is missing context, needed for a better Threat Modeling.
+    2. Next steps with a concrete, actionable recommendation for what the user should do next.
+    3. Leerer Absatz
+
+    Use exactly this order, no extra explanations, no bullet points other than the numbered list.    
     """
 
     #GPT wird aufgerufen

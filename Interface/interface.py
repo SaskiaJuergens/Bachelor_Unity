@@ -120,9 +120,15 @@ def build_user_level_instructions(user_level: int) -> str:
 def build_threat_analysis_prompt(json_raw: str, user_input: str, user_level: int) -> str:
     # Erstellt die Zielgruppen-Erklärung basierend auf dem Level
     user_level_instructions = build_user_level_instructions(user_level)
+
+    st.write("user_input 1:", user_input)
+
     # Falls der User nichts eingegeben hat -> Default-Frage 
     if user_input.strip() == "":
         user_input = "Please perform a STRIDE Threat Analysis based on the Data Flow Diagram (DFD) provided in a non-JSON format"
+    
+    st.write("user_input 2:", user_input)
+
     if user_level >= 4:
         output_instruction = "Output the STRIDE analysis as a structured JSON list."
     else:
@@ -157,6 +163,11 @@ def build_threat_analysis_prompt(json_raw: str, user_input: str, user_level: int
     """
 
 
+
+
+
+
+############################################################################################
 def main():
     st.title("AI-powered Threat Modeling")
     # Nutzerwissen abfragen (nur einmal beim Start)
@@ -180,6 +191,9 @@ def main():
         st.session_state.new_session_key = None
     if "input_query" not in st.session_state:
         st.session_state.input_query = ""
+    if "user_input" not in st.session_state:
+        st.session_state.user_input = ""
+
 
     #####User Level######
     def update_user_level():
@@ -234,7 +248,9 @@ def main():
 
     chat_history = StreamlitChatMessageHistory(key="history")
         
-    user_input = st.text_input("Ask a question...", key="user_input", on_change=set_send_input)
+    #user_input = st.text_input("Ask a question...", key="user_input", on_change=set_send_input)
+    user_input = st.text_input("Ask a question...", key="user_input", value=st.session_state.get("user_input", ""), on_change=set_send_input)
+
 
     # JSON-Upload und Verarbeitung
     json_raw, parsed_json = upload_json_file()
@@ -242,33 +258,20 @@ def main():
         parsed_json = number_dfd_flows(parsed_json)
         json_raw = json.dumps(parsed_json, indent=2)
 
+
+    ##### Send button #######
     send_button = st.button("Send", key="send_button")
     if send_button or st.session_state.send_input:   #Senden button betätigen
         llm_chain = load_chain(chat_history)
 
-        #if st.session_state.input_query != "":
         user_query = st.session_state.input_query.strip()
-        if json_raw and user_query == "":
-            user_query = "Please perform a STRIDE Threat Analysis of the provided Data Flow Diagram (DFD)."
-
-        #user_level_instructions = build_user_level_instructions(st.session_state.user_level)
-        #threat_prompt = build_threat_analysis_prompt(json_raw, st.session_state.input_query, st.session_state.user_level)
-
+        
         llm_input = build_threat_analysis_prompt(json_raw=json_raw, user_input=st.session_state.input_query, user_level=st.session_state.user_level)
 
 
         with chat_container:
             llm_response = llm_chain.run(llm_input) #LLM antowrtet
 
-            # if not is_valid_json(llm_response):
-            #     st.warning("The answer doesn't contain a valid JSON.")
-            # else:
-            #     parsed_json = json.loads(llm_response)
-            #     issues = check_dfd_completeness(parsed_json)
-            #     if issues:
-            #         st.warning("Possible Problems with DFD:")
-            #         for issue in issues:
-            #             st.text(f"- {issue}")
             st.session_state.input_query = ""
 
             json_output, answer_text = extract_json_from_response(llm_response)
@@ -279,8 +282,8 @@ def main():
             else:
                 answer_text = llm_response.strip()
                 json_output = None
-                #st.write(answer_text)
 
+               
 
 
 
@@ -299,45 +302,41 @@ def main():
             # Interaktive Dialog - LLM fragt den User
             option_lines, feedback_question = next_prompt_recommendation(chat_history, ask_gpt35, memory_prompt_template)
 
-            # Meaningful next step nur, wenn nicht leer
-            if option_lines and any(opt.strip() for opt in option_lines):
-                with st.expander("What do you wanna do next?", expanded=True):
 
-                    # if f"next_action_selection_{len(option_lines)}" not in st.session_state:
-                    #     st.session_state[f"next_action_selection_{len(option_lines)}"] = None
+            with st.expander("What do you wanna do next? Kopie and send it the KI", expanded=True):
 
-                    next_action = st.radio(
-                        feedback_question,
-                        option_lines,
-                        key=f"next_action_selection_{len(option_lines)}",
-                        index=None
-                    )
+                next_action = st.radio(
+                    feedback_question,
+                    option_lines,
+                    key=f"next_action_selection_{len(option_lines)}",
+                    index=None
+                )
 
-                    # if f"feedback_selection{len(option_lines)}" not in st.session_state:
-                    #     st.session_state[f"feedback_selection{len(option_lines)}"] = None
-                    feedback = st.radio(
-                        "Was this guidance helpful and sufficiently detailed?",
-                        ["Yes", "No"],
-                        key=f"feedback_selection{len(chat_history.messages)}",
-                        index=None
-                    )
-
-                    if st.button("Next"):
-                        if next_action:
-                            if feedback == "No":
-                                st.session_state.input_query = (
-                                    "Answer more detailed for someone who has less IT-Security knowledge. "
-                                    f"Previous answer: {chat_history.messages[-1].content}"
-                                )
-                            else:
-                                st.session_state.input_query = (
-                                    "The last answer was satisfactory. Now please provide the user with additional ideas or practical tips on what steps they could or should take next."
-                                    f"Previous answer: {chat_history.messages[-1].content}"
-                                )
-                            st.session_state.send_input = True
+                feedback = st.radio(
+                    "Was this guidance helpful and sufficiently detailed?",
+                    ["Yes", "No"],
+                    key=f"feedback_selection{len(chat_history.messages)}",
+                    index=None
+                )
 
 
-    
+                # if next_action:
+                #     if feedback == "No":
+                #         st.session_state.user_input = (
+                #             "Answer more detailed for someone who has less IT-Security knowledge. "
+                #             f"Previous answer: {chat_history.messages[-1].content}"
+                #         )
+                #     else:
+                #         st.session_state.user_input = (
+                #             "The last answer was satisfactory. Now please provide the user with additional ideas or practical tips on what steps they could or should take next."
+                #             f"Previous answer: {chat_history.messages[-1].content}"
+                #         )
+                #     st.session_state.send_input = True
+        
+
+
+
+
     #chat in session speichern
     save_chat_history()
 

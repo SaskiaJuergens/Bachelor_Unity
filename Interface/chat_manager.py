@@ -9,9 +9,21 @@ import streamlit as st
 #saving the list as a chat session
 def save_chat_history_json(chat_history, file_path):
     with open(file_path, "w") as f:
-        json_data = [message if isinstance(message, dict) else message.dict() for message in chat_history]
+        json_data = []
+        for message in chat_history:
+            if isinstance(message, HumanMessage):
+                json_data.append({"type": "human", "content": message.content})
+            elif isinstance(message, AIMessage):
+                json_data.append({"type": "ai", "content": message.content})
+            elif isinstance(message, SystemMessage):
+                json_data.append({"type": "system", "content": message.content})
+            else:
+                print(f"Unknown message type, skipping: {message}")
+        json.dump(json_data, f, indent=2)
 
-        json.dump(json_data, f) #speichern der liste
+        # json_data = [message if isinstance(message, dict) else message.dict() for message in chat_history]
+
+        # json.dump(json_data, f) #speichern der liste
 
   
 
@@ -32,11 +44,13 @@ def load_chat_history_json(file_path):
                 print(f"Unknown message type in history: {msg_type}")
         
         return messages
+    
+
 
 
 #session_state managment
 def get_timestamp():
-    return datetime.now().strftime("%Y_%m_%d_%H_%M_%S") #Year Month Day Hour Minute Second
+    return datetime.now().strftime("%Y_%m_%d_%H_%M") #Year Month Day Hour Minute Second
 
 
 
@@ -53,18 +67,22 @@ def next_prompt_recommendation(chat_history, ask_gpt35_func, system_prompt):
 
     {chat_history_text}
 
-    Please analyze whether important security-relevant information is missing in the previous dialogue or in the provided system model (e.g., DFD) that is necessary for a thorough threat analysis.  
-   
-    Your tasks:
+    Please analyze the previous dialogue and any provided system model (e.g., DFD) to determine:
+    - Whether important security-relevant information is missing for a thorough STRIDE threat modeling.
+    - What specific additional data could make the analysis more complete.
+    - What logical next steps or follow-up questions could be taken.
 
-    1. Answer the user’s question or fulfill their request on the IT security topic, but clearly indicate where important information is missing or incomplete for a thorough STRIDE threat modeling.
-    2. Suggest explicitly which additional details, data, or context the user could provide to improve the accuracy and depth of the threat analysis (e.g., more detailed data flow diagrams, system architecture, specific technologies in use, user roles, or security controls).
-    3. Propose practical next steps the user can take after receiving your initial analysis, such as further investigation, risk assessment, or mitigation strategies tailored to their knowledge level.
-    4. Offer ideas for what the user might ask next to deepen or broaden the analysis, including any overlooked threat categories, potential attack vectors, or security considerations relevant to their scenario.
-    5. Emphasize the importance of completeness and precision in the input information to achieve the best possible STRIDE threat modeling outcome.
-    6. Format your response clearly and helpfully, using bullet points or short paragraphs to organize suggestions and recommendations.
+    Your tasks (strict output format required):
 
-    Use exactly this order, no extra explanations, no bullet points other than the numbered list.    
+    1. Answer the user’s question or fulfill their request on the IT security topic, clearly pointing out any gaps or missing details that prevent a complete and accurate STRIDE threat modeling. The answer must be factually relevant and specific to the provided scenario.
+    2. Suggest explicitly which additional details, data, or context the user could provide to improve the accuracy and depth of the threat analysis. These suggestions must be concrete and relevant, for example: describe the network topology, provide authentication methods used, specify technologies or frameworks, include user roles, or outline existing security controls.
+    3. Propose practical next steps the user can take after receiving your initial analysis, such as specific research actions, further data collection, validation of assumptions, risk assessments, or targeted mitigation planning appropriate to the user’s knowledge level.
+    4. Offer ideas for what the user might ask next to deepen or broaden the analysis, including precise follow-up questions about overlooked threat categories, potential attack vectors, system design concerns, or missing STRIDE elements.
+    5. Emphasize the importance of completeness and precision in the provided input information and explain why these factors directly affect the quality and usefulness of the STRIDE threat modeling.
+    6. Format your response exactly in this numbered order without adding any other bullet point style, headings, or extra commentary. Each numbered point must contain a complete and meaningful sentence or paragraph — no empty items, no placeholders, no unfinished statements.
+    7. Do not repeat or reference these instructions in your output.
+
+    Output only the numbered list in the correct order.
     """
 
     #GPT wird aufgerufen

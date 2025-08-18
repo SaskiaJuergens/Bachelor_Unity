@@ -121,13 +121,13 @@ def build_threat_analysis_prompt(json_raw: str, user_input: str, user_level: int
     # Erstellt die Zielgruppen-Erklärung basierend auf dem Level
     user_level_instructions = build_user_level_instructions(user_level)
 
-    st.write("user_input 1:", user_input)
+    #st.write("user_input 1:", user_input)
 
     # Falls der User nichts eingegeben hat -> Default-Frage 
     if user_input.strip() == "":
         user_input = "Please perform a STRIDE Threat Analysis based on the Data Flow Diagram (DFD) provided in a non-JSON format"
     
-    st.write("user_input 2:", user_input)
+    #st.write("user_input 2:", user_input)
 
     if user_level >= 4:
         output_instruction = "Output the STRIDE analysis as a structured JSON list."
@@ -138,10 +138,10 @@ def build_threat_analysis_prompt(json_raw: str, user_input: str, user_level: int
         )
 
     return f"""
+    Question: {user_input}
+
     {user_level_instructions}
 
-    Question: {user_input}
-       
     Your tasks:
     1.Answer the question or fulfill the user's request for a IT-Security realted topic, but clearly indicate where information is missing or where, as an AI, 
     you may encounter limitations or challenges — especially in context-specific or highly detailed tasks. 
@@ -303,21 +303,27 @@ def main():
             option_lines, feedback_question = next_prompt_recommendation(chat_history, ask_gpt35, memory_prompt_template)
 
 
-            with st.expander("What do you wanna do next? Kopie and send it the KI", expanded=True):
+            with st.expander("What do you wanna do next?", expanded=True):
 
-                next_action = st.radio(
-                    feedback_question,
-                    option_lines,
-                    key=f"next_action_selection_{len(option_lines)}",
-                    index=None
-                )
+                # Liste ausgeben statt Radio-Buttons
+                for option in option_lines:
+                    st.markdown(f"- {option}")
+                    
+                # next_action = st.radio(
+                #     feedback_question,
+                #     option_lines,
+                #     #key=f"next_action_selection_{len(option_lines)}",
+                #     index=None,
+                #     key="next_action_selection"
+                # )
 
-                feedback = st.radio(
-                    "Was this guidance helpful and sufficiently detailed?",
-                    ["Yes", "No"],
-                    key=f"feedback_selection{len(chat_history.messages)}",
-                    index=None
-                )
+                # feedback = st.radio(
+                #     "Was this guidance helpful and sufficiently detailed?",
+                #     ["Yes", "No"],
+                #     #key=f"feedback_selection{len(chat_history.messages)}",
+                #     index=None,
+                #     key="next_action_selection"
+                # )
 
 
                 # if next_action:

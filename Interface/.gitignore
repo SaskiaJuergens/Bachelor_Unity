@@ -77,3 +77,7 @@ DerivedDataCache/*
 # Ignore LSF
 models/mistral-7b-instruct-v0.1.Q5_K_M.gguf
 models/*
+
+
+
+#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

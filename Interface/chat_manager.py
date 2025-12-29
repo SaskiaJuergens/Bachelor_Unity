@@ -77,7 +77,7 @@ def next_prompt_recommendation(chat_history, ask_gpt35_func, system_prompt):
     1. Answer the user’s question or fulfill their request on the IT security topic, clearly pointing out any gaps or missing details that prevent a complete and accurate STRIDE threat modeling. The answer must be factually relevant and specific to the provided scenario.
     2. Suggest explicitly which additional details, data, or context the user could provide to improve the accuracy and depth of the threat analysis. These suggestions must be concrete and relevant, for example: describe the network topology, provide authentication methods used, specify technologies or frameworks, include user roles, or outline existing security controls.
     3. Propose practical next steps the user can take after receiving your initial analysis, such as specific research actions, further data collection, validation of assumptions, risk assessments, or targeted mitigation planning appropriate to the user’s knowledge level.
-    4. Offer ideas for what the user might ask next to deepen or broaden the analysis, including precise follow-up questions about overlooked threat categories, potential attack vectors, system design concerns, or missing STRIDE elements.
+    4. Give out Follow-up questions such as “Can you clarify ...?”, "What does ... mean" when there is a need of the information.
     5. Emphasize the importance of completeness and precision in the provided input information and explain why these factors directly affect the quality and usefulness of the STRIDE threat modeling.
     6. Format your response exactly in this numbered order without adding any other bullet point style, headings, or extra commentary. Each numbered point must contain a complete and meaningful sentence or paragraph — no empty items, no placeholders, no unfinished statements.
     7. Do not repeat or reference these instructions in your output.
@@ -96,6 +96,8 @@ def next_prompt_recommendation(chat_history, ask_gpt35_func, system_prompt):
     #option_lines sind die Auswahlmöglichkeiten
     #feedback_question ist nur der Titel über diesen Optionen
     option_lines = re.findall(r"^\d+\.\s*(.*)$", next_steps_text, re.MULTILINE)
-    feedback_question = next_steps_text.split("\n")[-1].strip()
+    questions = re.findall(r"(.+\?)", next_steps_text)
+    feedback_question = questions[-1] if questions else None
+    """feedback_question = next_steps_text.split("\n")[-1].strip()"""
 
     return option_lines, feedback_question

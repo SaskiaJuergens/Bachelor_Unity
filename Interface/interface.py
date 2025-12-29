@@ -11,8 +11,7 @@ import json
 import re
 
 config = {
-    "openai_api_key": "",
-    "chat_history_path": "chat_session/"
+    "openai_api_key": ""
 }
 
 
@@ -88,27 +87,26 @@ def build_user_level_instructions(user_level: int) -> str:
             "- Skip basic explanations – assume that concepts like XSS or CSRF are already known.\n"
             "- Structured threat classifications (e.g., STRIDE or LINDDUN) are welcome.\n"
             "- Suggestions should be action-oriented and technically precise.\n"
-            "- Output the STRIDE analysis as a structured JSON list. Example: \n" 
-            "- DFD-Element: Edge 2 (from Process A to Storage B),\n" 
-            "- STRIDE category: Information Disclosure,\n" 
-            "- Description: Sensitive data is transferred without encryption.,\n" 
-            "- Recommendation: Use TLS to secure the data in transit.\n"   
+            "- Output the STRIDE analysis as a structured JSON list. Example:" 
+            "- DFD-Element: Edge 2 (from Process A to Storage B)," 
+            "- STRIDE category: Information Disclosure," 
+            "- Description: Sensitive data is transferred without encryption.," 
+            "- Recommendation: Use TLS to secure the data in transit."   
         )
 
     elif user_level == 5:
         return (
             "The user is an IT security expert (Level 5).\n"
-            "- Avoid didactic or simplified explanations.\n"
             "- Focus on relevant threats, edge cases, and in-depth analyses.\n"
             "- Provide concise notes, e.g., on unusual threat vectors or architectural issues.\n"
             "- You can assume the user is familiar with STRIDE, CIA, attack vectors, and security patterns.\n"
             "- The user does not need basic info, term definitions, or overly detailed explanations.\n"
             "- Optional: Spark discussion or confrontation through critical questions (challenge partner role).\n"
-            "- Output the STRIDE analysis as a structured JSON list. Example: \n" 
-            "- DFD-Element: Edge 2 (from Process A to Storage B),\n" 
-            "- STRIDE category: Information Disclosure,\n" 
-            "- Description: Sensitive data is transferred without encryption.,\n" 
-            "- Recommendation: Use TLS to secure the data in transit.\n" 
+            "- Output the STRIDE analysis as a structured JSON list. Example:" 
+            "- DFD-Element: Edge 2 (from Process A to Storage B)," 
+            "- STRIDE category: Information Disclosure," 
+            "- Description: Sensitive data is transferred without encryption.," 
+            "- Recommendation: Use TLS to secure the data in transit." 
         )
 
     else:
@@ -142,24 +140,11 @@ def build_threat_analysis_prompt(json_raw: str, user_input: str, user_level: int
 
     {user_level_instructions}
 
-    Your tasks:
-    1.Answer the question or fulfill the user's request for a IT-Security realted topic, but clearly indicate where information is missing or where, as an AI, 
-    you may encounter limitations or challenges — especially in context-specific or highly detailed tasks. 
-    2. Be transparent about your boundaries and limitations for you as a AI and provide the user with suggestions on what additional information is needed to deliver 
-    a more accurate or helpful response.
-
     The user provided the following Data Flow Diagram (in JSON format):
     {json_raw}
-    3. If you do a STRIDE THreat Modeling - then for each threat, include:
-       - Which element of the DFD it affects (e.g., node or edge ID)
-       - The STRIDE category
-       - A short explanation of the risk
-       - A recommendation for mitigation, appropriate to the user's knowledge level
-       - (Optional) An example CVE that illustrates a comparable real-world vulnerability
+    If you do a STRIDE Threat Modeling: Output the STRIDE analysis as a structured JSON list suitable for the user knowledge Level.
 
-    4. Output the STRIDE analysis as a structured JSON list suitable for the user knowledge Level.
 
-    If the Question isn't about a IT-Security realted topic, clearify, that you don't help in other matters than IT-Security.
     """
 
 
@@ -194,6 +179,7 @@ def main():
     if "user_input" not in st.session_state:
         st.session_state.user_input = ""
 
+    
 
     #####User Level######
     def update_user_level():
@@ -203,7 +189,7 @@ def main():
         st.session_state.user_level = None
 
     if st.session_state.session_key == "new session":
-        st.select_slider(
+        st.sidebar.select_slider(
             "Rate your IT security knowledge from 1 (Beginner) to 5 (Expert)",
             options=[1, 2, 3, 4, 5],
             key="slider_user_level",
@@ -222,8 +208,7 @@ def main():
                         break
                     except:
                         st.session_state.user_level = 3  # Default
-
-
+    st.markdown("---")
 
 
     index = chat_sessions.index(st.session_state.session_index_tracker)
@@ -253,10 +238,14 @@ def main():
 
 
     # JSON-Upload und Verarbeitung
-    json_raw, parsed_json = upload_json_file()
+    with st.sidebar:
+        st.markdown("---")
+        json_raw, parsed_json = upload_json_file()
     if parsed_json:
         parsed_json = number_dfd_flows(parsed_json)
         json_raw = json.dumps(parsed_json, indent=2)
+
+
 
 
     ##### Send button #######

@@ -15,16 +15,20 @@ from dotenv import load_dotenv
 import os
 from openai import OpenAI
 
-load_dotenv()
+"""load_dotenv()"""
 config = {
-    "openai_api_key": "",
+    "openai_api_key": "sk"
+
+    "-proj"
+    "-rO4Cgao5AXhi84aAqYa_tBlgIBUJHfA8ghLeI_JOMnurKLf6KIA_"
+    "-rvkkK5WUdofagpXopgsiLT3BlbkFJ9P5hgChe49FYkOR2wl55CcOMEdpgRD_OFvJyhhQqW7WA7T4E80Z8aHGUhngHJZwwyxfxuDZdcA",
     "chat_history_path": "chat_session/"
 }
 
 client = OpenAI(api_key=config["openai_api_key"])
 
 def create_chat_memory(chat_history):
-    return ConversationBufferWindowMemory(memory_key="history", chat_memory=chat_history, k=3)
+    return ConversationBufferWindowMemory(memory_key="history", chat_memory=chat_history, k=12)
 
 def create_prompt_from_template(template):
     return PromptTemplate.from_template(template)

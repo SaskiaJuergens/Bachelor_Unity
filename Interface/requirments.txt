@@ -12,3 +12,5 @@ streamlit==1.28.2
 streamlit-mic-recorder==0.0.4
 transformers==4.35.2
 huggingface-hub==0.24.0
+
+

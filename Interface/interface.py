@@ -11,7 +11,12 @@ import json
 import re
 
 config = {
-    "openai_api_key": ""
+    "openai_api_key": "sk"
+    
+    "-proj"
+    "-rO4Cgao5AXhi84aAqYa_tBlgIBUJHfA8ghLeI_JOMnurKLf6KIA_"
+    "-rvkkK5WUdofagpXopgsiLT3BlbkFJ9P5hgChe49FYkOR2wl55CcOMEdpgRD_OFvJyhhQqW7WA7T4E80Z8aHGUhngHJZwwyxfxuDZdcA",
+    "chat_history_path": "chat_session/"
 }
 
 

@@ -1,0 +1,3 @@
+Um das Interface zu starten, müssen zunächst die Pakete installiert werden, die in der requirements.txt aufgeführt sind.
+
+Anschließend kann das Interface mit dem Befehl: streamlit run interface.py
